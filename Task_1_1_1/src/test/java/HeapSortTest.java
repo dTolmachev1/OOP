@@ -14,7 +14,7 @@ class HeapSortTest {
 
     @Test
     @DisplayName("Empty array")
-    void empty() {
+    void heapSort_emptyArray() {
         src = new Integer[0];
         exp = src;
         HeapSort.heapSort(src);
@@ -23,7 +23,7 @@ class HeapSortTest {
 
     @Test
     @DisplayName("Single element array")
-    void singleElement() {
+    void heapSort_singleElement() {
         src = new Integer[]{rand.nextInt(Integer.MAX_VALUE)};
         exp = src;
         HeapSort.heapSort(src);
@@ -32,7 +32,7 @@ class HeapSortTest {
 
     @Test
     @DisplayName("Array with equal elements")
-    void equalElements() {
+    void heapSort_equalElements() {
         src = new Integer[100000];
         Arrays.fill(src, rand.nextInt(Integer.MAX_VALUE));
         exp = src;
@@ -42,7 +42,7 @@ class HeapSortTest {
 
     @Test
     @DisplayName("Randomised array")
-    void randomised() {
+    void heapSort_randomisedArray() {
         src = new Integer[100000];
         Arrays.setAll(src, i -> rand.nextInt(Integer.MAX_VALUE));
         exp = src;
@@ -53,7 +53,7 @@ class HeapSortTest {
 
     @Test
     @DisplayName("Sorted array")
-    void sorted() {
+    void heapSort_sortedArray() {
         src = new Integer[100000];
         Arrays.setAll(src, i -> rand.nextInt(Integer.MAX_VALUE));
         Arrays.sort(src);
@@ -64,7 +64,7 @@ class HeapSortTest {
 
     @Test
     @DisplayName("Backwards sorted array")
-    void backwardsSorted() {
+    void heapSort_backwardsSortedArray() {
         src = new Integer[100000];
         Arrays.setAll(src, i -> rand.nextInt(Integer.MAX_VALUE));
         Arrays.sort(src, Collections.reverseOrder());
