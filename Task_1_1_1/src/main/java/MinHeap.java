@@ -1,7 +1,16 @@
 import java.util.Arrays;
 
+/**
+ * <p>Minheap data structure.</p>
+ *
+ * @param <T> type of elements, should be <code>Comparable</code>.
+ */
 public class MinHeap<T extends Comparable<T>> {
-    /* initialises heap with a given capacity */
+    /**
+     * <p>Initialises heap with a given capacity.</p>
+     *
+     * @param capacity for initial capacity (maybe increased later).
+     */
     public MinHeap(int capacity) {
         this.values = (T[]) new Comparable[capacity];
         this.heap2idx = new int[capacity];
@@ -10,7 +19,11 @@ public class MinHeap<T extends Comparable<T>> {
         this.capacity = capacity;
     }
 
-    /* initialises heap from a given array */
+    /**
+     * <p>Initialises heap from a given array.</p>
+     *
+     * @param arr array, which elements will be stored into heap.
+     */
     public MinHeap(T[] arr) {
         this.values = (T[]) new Comparable[3*arr.length/2];
         this.heap2idx = new int[3*arr.length/2];
@@ -22,12 +35,21 @@ public class MinHeap<T extends Comparable<T>> {
         }
     }
 
-    /* checks if heap is empty */
+    /**
+     * <p>Checks if heap is empty.</p>
+     *
+     * @return <code>True</code> if heap is empty and <code>False</code> otherwise.
+     */
     public boolean isEmpty() {
         return this.size == 0;
     }
 
-    /* checks if heap contains given element */
+    /**
+     * <p>Checks if heap contains given element.</p>
+     *
+     * @param value desired element.
+     * @return <code>True</code> if heap contains given element and <code>False</code> otherwise.
+     */
     public boolean contains(T value) {
         for(int i = 0; i < this.size; i++) {
             if(value.compareTo(this.values[i]) == 0) {
@@ -37,12 +59,21 @@ public class MinHeap<T extends Comparable<T>> {
         return false;
     }
 
-    /* returns heap size */
+    /**
+     * <p>Returns heap size.</p>
+     *
+     * @return current size of a heap
+     */
     public int size() {
         return this.size;
     }
 
-    /* adds new element to heap */
+    /**
+     * <p>Adds new element to heap.</p>
+     *
+     * @param value element which should be added.
+     * @param idx index of its element in the source array.
+     */
     public void add(T value, int idx) {
         this.size++;
         if(this.size > this.capacity) {
@@ -57,7 +88,11 @@ public class MinHeap<T extends Comparable<T>> {
         siftUp(this.size-1);
     }
 
-    /* adds new element to heap */
+    /**
+     * <p>Adds new element to heap.</p>
+     *
+     * @param value element which should be added.
+     */
     public void add(T value) {
         this.size++;
         if(this.size > this.capacity) {
@@ -72,12 +107,20 @@ public class MinHeap<T extends Comparable<T>> {
         siftUp(this.size-1);
     }
 
-    /* Returns minimal element from heap */
+    /**
+     * <p>Returns minimal element from heap.</p>
+     *
+     * @return element from the top of the heap (should be minimal element, follows from the heap invariant).
+     */
     public T getMin() {
         return this.values[0];
     }
 
-    /* extracts minimal element from heap */
+    /**
+     * <p>Extracts minimal element from heap.</p>
+     *
+     * @return element from the top of the heap (should be minimal element, follows from the heap invariant).
+     */
     public T extractMin() {
         T value = this.values[0];
         swap(0, this.size-1);
@@ -86,7 +129,12 @@ public class MinHeap<T extends Comparable<T>> {
         return value;
     }
 
-    /* deletes element from heap by its index from source array */
+    /**
+     * <p>Deletes element from heap by its index in the source array.</p>
+     *
+     * @param idx index of its element in the source array.
+     * @return deleted element.
+     */
     public T delete(int idx) {
         T value = this.values[this.idx2heap[idx]];
         swap(this.idx2heap[idx], this.size-1);

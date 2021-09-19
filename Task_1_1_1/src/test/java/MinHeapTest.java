@@ -27,12 +27,11 @@ class MinHeapTest {
     @Test
     @DisplayName("contains()")
     void contains() {
-        heap = new MinHeap<>(arr);
-        Arrays.sort(arr);
-        for(Integer val : arr) {
-            Assertions.assertTrue(heap.contains(val));
-            heap.extractMin();
-            Assertions.assertFalse(heap.contains(val));
+        heap = new MinHeap<>(10000);
+        for(int i = 0; i < heap.size(); i++) {
+            Assertions.assertFalse(heap.contains(i));
+            heap.add(i);
+            Assertions.assertTrue(heap.contains(i));
         }
     }
 
@@ -91,7 +90,7 @@ class MinHeapTest {
         heap = new MinHeap<>(arr);
         for(int i = 0; i < arr.length; i++) {
             heap.delete(i);
-            Assertions.assertFalse(heap.contains(arr[i]));
+            Assertions.assertEquals(heap.size(), arr.length-i-1);
         }
     }
 

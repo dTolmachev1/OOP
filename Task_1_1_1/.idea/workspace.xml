@@ -5,14 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="637eb41e-445a-446e-93a9-f9b8069e6f24" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Task_1_1_1.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/java/HeapSortTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/java/MinHeapTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/HeapSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/HeapSort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MinHeap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MinHeap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/MinHeapTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/MinHeapTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +29,12 @@
         </task>
         <projects_view>
           <tree_state>
-            <expand />
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Task_1_1_1" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
             <select />
           </tree_state>
         </projects_view>
@@ -52,13 +54,13 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$APPLICATION_HOME_DIR$/lib" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
   </component>
-  <component name="RunManager" selected="Gradle.Task_1_1_1 [wrapper]">
+  <component name="RunManager" selected="Gradle.MinHeapTest">
     <configuration name="HeapSortTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -145,10 +147,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.MinHeapTest" />
         <item itemvalue="Gradle.Task_1_1_1 [wrapper]" />
         <item itemvalue="Gradle.Task_1_1_1 [init]" />
         <item itemvalue="Gradle.HeapSortTest" />
-        <item itemvalue="Gradle.MinHeapTest" />
       </list>
     </recent_temporary>
   </component>
