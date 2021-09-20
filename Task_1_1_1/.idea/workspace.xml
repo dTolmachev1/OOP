@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="637eb41e-445a-446e-93a9-f9b8069e6f24" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/HeapSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/HeapSort.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/MinHeap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MinHeap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/MinHeapTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/MinHeapTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MinHeap.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/MinHeapTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +59,7 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
   </component>
-  <component name="RunManager" selected="Gradle.MinHeapTest">
+  <component name="RunManager" selected="Gradle.HeapSortTest">
     <configuration name="HeapSortTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -147,10 +146,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.HeapSortTest" />
         <item itemvalue="Gradle.MinHeapTest" />
         <item itemvalue="Gradle.Task_1_1_1 [wrapper]" />
         <item itemvalue="Gradle.Task_1_1_1 [init]" />
-        <item itemvalue="Gradle.HeapSortTest" />
       </list>
     </recent_temporary>
   </component>
