@@ -11,9 +11,9 @@ public class HeapSort {
      * @param <T> type of elements, should be <code>Comparable</code>.
      */
     public static<T extends Comparable<T>> void heapSort(T[] arr) {
-        /* building minheap from source array
+        /* building minheap from source array */
         for(int i = arr.length / 2 - 1; i >= 0; i--) {
-            heapify(arr, i);
+            heapify(arr, arr.length, i);
         }
         /* extracting elements from heap */
         for(int i = arr.length - 1; i > 0; i--) {

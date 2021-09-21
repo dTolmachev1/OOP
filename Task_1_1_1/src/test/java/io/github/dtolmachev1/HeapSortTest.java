@@ -1,6 +1,5 @@
 package io.github.dtolmachev1;
 
-import io.github.dtolmachev1.HeapSort;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -19,7 +18,7 @@ class HeapSortTest {
     @DisplayName("Empty array")
     void heapSort_emptyArray() {
         src = new Integer[0];
-        exp = src;
+        exp = src.clone();
         HeapSort.heapSort(src);
         Assertions.assertArrayEquals(src, exp);
     }
@@ -28,7 +27,7 @@ class HeapSortTest {
     @DisplayName("Single element array")
     void heapSort_singleElement() {
         src = new Integer[]{rand.nextInt(Integer.MAX_VALUE)};
-        exp = src;
+        exp = src.clone();
         HeapSort.heapSort(src);
         Assertions.assertArrayEquals(src, exp);
     }
@@ -38,7 +37,7 @@ class HeapSortTest {
     void heapSort_equalElements() {
         src = new Integer[100000];
         Arrays.fill(src, rand.nextInt(Integer.MAX_VALUE));
-        exp = src;
+        exp = src.clone();
         HeapSort.heapSort(src);
         Assertions.assertArrayEquals(src, exp);
     }
@@ -48,7 +47,7 @@ class HeapSortTest {
     void heapSort_randomisedArray() {
         src = new Integer[100000];
         Arrays.setAll(src, i -> rand.nextInt(Integer.MAX_VALUE));
-        exp = src;
+        exp = src.clone();
         HeapSort.heapSort(src);
         Arrays.sort(exp);
         Assertions.assertArrayEquals(src, exp);
@@ -60,7 +59,7 @@ class HeapSortTest {
         src = new Integer[100000];
         Arrays.setAll(src, i -> rand.nextInt(Integer.MAX_VALUE));
         Arrays.sort(src);
-        exp = src;
+        exp = src.clone();
         HeapSort.heapSort(src);
         Assertions.assertArrayEquals(src, exp);
     }
@@ -71,7 +70,7 @@ class HeapSortTest {
         src = new Integer[100000];
         Arrays.setAll(src, i -> rand.nextInt(Integer.MAX_VALUE));
         Arrays.sort(src, Collections.reverseOrder());
-        exp = src;
+        exp = src.clone();
         HeapSort.heapSort(src);
         reverse(exp);
         Assertions.assertArrayEquals(src, exp);
