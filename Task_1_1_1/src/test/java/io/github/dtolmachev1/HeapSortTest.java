@@ -1,3 +1,6 @@
+package io.github.dtolmachev1;
+
+import io.github.dtolmachev1.HeapSort;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
