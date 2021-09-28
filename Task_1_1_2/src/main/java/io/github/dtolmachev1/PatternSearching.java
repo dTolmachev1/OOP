@@ -6,6 +6,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <p>Class for pattern searching with z-algorithm.</p>
@@ -16,10 +17,10 @@ public class PatternSearching {
      * 
      * @param fileName of a file for searching.
      * @param pattern desired substring.
-     * @return <code>ArrayList</code> with occurrences positions.
+     * @return <code>List</code> with occurrences positions.
      */
-    public static ArrayList<Integer> findOccurrences(String fileName, String pattern) {
-        ArrayList<Integer> occurrences = new ArrayList<>();
+    public static List<Integer> findOccurrences(String fileName, String pattern) {
+        List<Integer> occurrences = new ArrayList<>();
         if(pattern.length() != 0) {
             try (BufferedReader reader = Files.newBufferedReader(Paths.get(fileName), StandardCharsets.UTF_8)) {
                 occurrences = processText(reader, pattern);
@@ -32,8 +33,8 @@ public class PatternSearching {
     }
 
     /* finds all occurrences of a given pattern using precalculated z-array */
-    private static ArrayList<Integer> processText(BufferedReader reader, String pattern) {
-        ArrayList<Integer> occurrences = new ArrayList<>();
+    private static List<Integer> processText(BufferedReader reader, String pattern) {
+        List<Integer> occurrences = new ArrayList<>();
         char[] buffer = new char[pattern.length()];
         try {
             reader.read(buffer, 0, buffer.length - 1);
