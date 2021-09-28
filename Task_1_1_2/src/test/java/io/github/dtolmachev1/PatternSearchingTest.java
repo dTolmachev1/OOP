@@ -13,6 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 class PatternSearchingTest {
@@ -279,8 +280,8 @@ class PatternSearchingTest {
     }
 
     private static Random random;
-    private ArrayList<Integer> src;
-    private ArrayList<Integer> exp;
+    private List<Integer> src;
+    private List<Integer> exp;
     private static String empty;
     private static String singleCharacter;
     private static String small;
@@ -292,8 +293,8 @@ class PatternSearchingTest {
     private static final Path MEDIUM_FILE = Paths.get("src", "test", "resources", "medium.txt");
 
     /* reference function to find all occurrences of a given pattern */
-    private ArrayList<Integer> findOccurrences(String pattern, String text) {
-        ArrayList<Integer> occurrences = new ArrayList<>();  // for storing occurrences positions
+    private List<Integer> findOccurrences(String pattern, String text) {
+        List<Integer> occurrences = new ArrayList<>();  // for storing occurrences positions
         if(pattern.length() != 0 && text.length() != 0) {
             int idx = 0;
             while (idx != -1) {
