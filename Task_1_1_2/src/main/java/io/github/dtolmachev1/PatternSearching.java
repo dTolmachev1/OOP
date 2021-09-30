@@ -92,9 +92,10 @@ public class PatternSearching {
             pattern.getChars(0, pattern.length(), buffer, 0);
             buffer[pattern.length()] = DELIMITER;
             reader.read(buffer, pattern.length() + 1, pattern.length() - 1);
-            for(int i = 0; reader.read(buffer, 2 * pattern.length(), buffer.length - 2 * pattern.length()) != -1; i++) {
+            int length;  // for storing number of read characters
+            for(int i = 0; (length = reader.read(buffer, 2 * pattern.length(), buffer.length - 2 * pattern.length())) != -1; i++) {
                 int[] zArr = zFunction(buffer);
-                for(int j = pattern.length() + 1; j < buffer.length; j++) {
+                for(int j = pattern.length() + 1; j < length + 2 * pattern.length(); j++) {
                     if(zArr[j] == pattern.length()) {
                         occurrences.add(i * (buffer.length - 2 * pattern.length()) + j - pattern.length() - 1);
                     }
