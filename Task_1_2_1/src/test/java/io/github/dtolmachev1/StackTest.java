@@ -306,26 +306,26 @@ class StackTest {
     @DisplayName("Contains all")
     void containsAll_Test() {
         int count = random.nextInt(COUNT);
-        ArrayList<Integer> arrayList = new ArrayList<>(count);
+        Stack<Integer> stack = new Stack<>(count);
         for(int i = 0; i < count; i++) {
-            arrayList.add(random.nextInt(COUNT));
+            stack.add(random.nextInt(COUNT));
         }
-        Assertions.assertTrue(preInit.containsAll(arrayList));
-        arrayList.add(COUNT);
-        Assertions.assertFalse(preInit.containsAll(arrayList));
+        Assertions.assertTrue(preInit.containsAll(stack));
+        stack.add(COUNT);
+        Assertions.assertFalse(preInit.containsAll(stack));
     }
 
     @Test
     @DisplayName("Append all")
     void addAll_Append() {
         int count = random.nextInt(COUNT);
-        ArrayList<Integer> arrayList = new ArrayList<>(count);
+        Stack<Integer> stack = new Stack<>(count);
         for(int i = 0; i < count; i++) {
-            arrayList.add(random.nextInt(COUNT));
+            stack.add(random.nextInt(COUNT));
         }
-        empty.addAll(arrayList);
+        empty.addAll(stack);
         for(int i = 0; i < count; i++) {
-            Assertions.assertEquals(arrayList.get(i), empty.get(i));
+            Assertions.assertEquals(stack.get(i), empty.get(i));
         }
     }
 
@@ -336,14 +336,14 @@ class StackTest {
         for(int i = 0; i < COUNT; i++) {
             empty.add(i);
         }
-        ArrayList<Integer> arrayList = new ArrayList<>(count);
+        Stack<Integer> stack = new Stack<>(count);
         for(int i = 0; i < count; i++) {
-            arrayList.add(random.nextInt(COUNT));
+            stack.add(random.nextInt(COUNT));
         }
         int index = random.nextInt(count);
-        empty.addAll(index, arrayList);
+        empty.addAll(index, stack);
         for(int i = 0; i < count; i++) {
-            Assertions.assertEquals(arrayList.get(i), empty.get(index + i));
+            Assertions.assertEquals(stack.get(i), empty.get(index + i));
         }
     }
 
@@ -351,13 +351,13 @@ class StackTest {
     @DisplayName("Remove all")
     void removeAll_Test() {
         int count = random.nextInt(COUNT);
-        ArrayList<Integer> arrayList = new ArrayList<>(count);
+        Stack<Integer> stack = new Stack<>(count);
         for(int i = 0; i < COUNT; i++) {
-            arrayList.add(random.nextInt(COUNT));
+            stack.add(random.nextInt(COUNT));
         }
-        preInit.removeAll(arrayList);
+        preInit.removeAll(stack);
         for(int i = 0; i < count; i++) {
-            Assertions.assertFalse(preInit.contains(arrayList.get(i)));
+            Assertions.assertFalse(preInit.contains(stack.get(i)));
         }
     }
 
@@ -365,14 +365,14 @@ class StackTest {
     @DisplayName("Retain all")
     void retainAll_Test() {
         int count = random.nextInt(COUNT);
-        ArrayList<Integer> arrayList = new ArrayList<>(count);
+        Stack<Integer> stack = new Stack<>(count);
         boolean[] flags = new boolean[COUNT];
         for(int i = 0; i < count; i++) {
             int index = random.nextInt(COUNT);
-            arrayList.add(index);
+            stack.add(index);
             flags[index] = true;
         }
-        preInit.retainAll(arrayList);
+        preInit.retainAll(stack);
         for(int i = 0; i < COUNT; i++) {
             Assertions.assertEquals(preInit.contains(i), flags[i]);
         }
