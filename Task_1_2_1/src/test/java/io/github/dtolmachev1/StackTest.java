@@ -28,36 +28,13 @@ class StackTest {
     }
 
     @Test
-    @DisplayName("Count")
-    void count_Test() {
-        for(int i = 0; i < COUNT; i++) {
-            Assertions.assertEquals(empty.count(), i);
-            empty.push(i);
-            Assertions.assertEquals(empty.count(), i + 1);
-        }
-        for(int i = COUNT - 1; i >= 0; i--) {
-            Assertions.assertEquals(preInit.count(), i + 1);
-            preInit.pop();
-            Assertions.assertEquals(preInit.count(), i);
-        }
-    }
-
-    @Test
-    @DisplayName("Empty")
-    void empty_Test() {
-        Assertions.assertTrue(empty.empty());
-        Assertions.assertTrue(preAlloc.empty());
-        Assertions.assertFalse(preInit.empty());
-    }
-
-    @Test
     @DisplayName("Push")
     void push_Test() {
-    for(int i = 0; i < COUNT; i++) {
-        Assertions.assertEquals(empty.count(), i);
-        empty.push(i);
-        Assertions.assertEquals(empty.count(), i + 1);
-        Assertions.assertEquals(empty.peek(), i);
+        for(int i = 0; i < COUNT; i++) {
+            Assertions.assertEquals(empty.size(), i);
+            empty.push(i);
+            Assertions.assertEquals(empty.size(), i + 1);
+            Assertions.assertEquals(empty.peek(), i);
         }
     }
 
@@ -65,9 +42,9 @@ class StackTest {
     @DisplayName("Pop")
     void pop_Test() {
         for(int i = COUNT-1; i >= 0; i--) {
-            Assertions.assertEquals(preInit.count(), i + 1);
+            Assertions.assertEquals(preInit.size(), i + 1);
             Assertions.assertEquals(preInit.pop(), i);
-            Assertions.assertEquals(preInit.count(), i);
+            Assertions.assertEquals(preInit.size(), i);
         }
     }
 
@@ -388,7 +365,8 @@ class StackTest {
     }
 
     @Test
-    void lastIndexOf() {
+    @DisplayName("Last index of")
+    void lastIndexOf_Test() {
         int count = random.nextInt(COUNT);
         for(int i = 0; i < count; i++) {
             empty.add(i);

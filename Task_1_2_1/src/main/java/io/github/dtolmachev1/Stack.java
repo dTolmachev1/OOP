@@ -53,24 +53,6 @@ public class Stack<E> implements Serializable, Cloneable, RandomAccess, Iterable
     }
 
     /**
-     * <p>Returns the number of elements in the stack.</p>
-     *
-     * @return number of the elements in the stack.
-     */
-    public int count() {
-        return size();
-    }
-
-    /**
-     * <p>Checks if given stack contains no items.</p>
-     *
-     * @return <code>true</code> if given stack contains no items or <code>false</code> otherwise.
-     */
-    public boolean empty() {
-        return isEmpty();
-    }
-
-    /**
      * <p>Pushes an item onto the top of the stack.</p>
      *
      * @param item to be pushed onto the stack.
