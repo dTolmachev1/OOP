@@ -33,17 +33,17 @@ class TranscriptTest {
 
     @BeforeEach
     void prepare() {
-        transcripts[0] = new Transcript(firstNames[0], surnames[0], patronymics[0], identifiers[0], department);
-        transcripts[1] = new Transcript(new Transcript.PersonalName(firstNames[1], surnames[1], patronymics[1]), identifiers[1], department, 8);
-        transcripts[2] = new Transcript(firstNames[2], surnames[2], patronymics[2], identifiers[2], department, subjects);
-        transcripts[3] = new Transcript(new Transcript.PersonalName(firstNames[3], surnames[3], patronymics[3]), identifiers[3], department, subjects);
+        transcripts[0] = new Transcript(new PersonalName(firstNames[0], surnames[0], patronymics[0]), identifiers[0], department, 0);
+        transcripts[1] = new Transcript(new PersonalName(firstNames[1], surnames[1], patronymics[1]), identifiers[1], department, 8);
+        transcripts[2] = new Transcript(new PersonalName(firstNames[2], surnames[2], patronymics[2]), identifiers[2], department, subjects);
+        transcripts[3] = new Transcript(new PersonalName(firstNames[3], surnames[3], patronymics[3]), identifiers[3], department, subjects);
     }
 
     @Test
     @DisplayName("Get personal name")
     void getPersonalName_Test() {
         for(int i = 0; i < 4; i++) {
-            Transcript.PersonalName personalName = transcripts[i].getPersonalName();
+            PersonalName personalName = transcripts[i].getPersonalName();
             Assertions.assertEquals(personalName.getFirstName(), firstNames[i]);
             Assertions.assertEquals(personalName.getSurname(), surnames[i]);
             Assertions.assertEquals(personalName.getPatronymic(), patronymics[i]);
