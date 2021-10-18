@@ -15,63 +15,10 @@ public class Transcript {
      * @param personalName student's full name.
      * @param identifier unique transcript's identifier.
      * @param department student's department.
-     */
-    Transcript(PersonalName personalName, int identifier, String department) {
-        this.personalName = personalName;
-        this.identifier = identifier;
-        this.department = department;
-        this.grades = new ArrayList<>();
-        this.thesis = null;
-    }
-
-    /**
-     * <p>Constructor which creates new transcript with given values.</p>
-     *
-     * @param firstName student's first name.
-     * @param surname student's surname.
-     * @param patronymic student's patronymic.
-     * @param identifier unique transcript's identifier.
-     * @param department student's department.
-     */
-    Transcript(String firstName, String surname, String patronymic, int identifier, String department) {
-        this.personalName = new PersonalName(firstName, surname, patronymic);
-        this.identifier = identifier;
-        this.department = department;
-        this.grades = new ArrayList<>();
-        this.thesis = null;
-    }
-
-    /**
-     * <p>Constructor which creates new transcript with given values.</p>
-     *
-     * @param personalName student's full name.
-     * @param identifier unique transcript's identifier.
-     * @param department student's department.
      * @param semesterCount number of semesters.
      */
     Transcript(PersonalName personalName, int identifier, String department, int semesterCount) {
         this.personalName = personalName;
-        this.identifier = identifier;
-        this.department = department;
-        this.grades = new ArrayList<>(semesterCount);
-        for(int i = 0; i < semesterCount; i++) {
-            grades.add(new HashMap<>());
-        }
-        this.thesis = null;
-    }
-
-    /**
-     * <p>Constructor which creates new transcript with given values.</p>
-     *
-     * @param firstName student's first name.
-     * @param surname student's surname.
-     * @param patronymic student's patronymic.
-     * @param identifier unique transcript's identifier.
-     * @param department student's department.
-     * @param semesterCount number of semesters.
-     */
-    Transcript(String firstName, String surname, String patronymic, int identifier, String department, int semesterCount) {
-        this.personalName = new PersonalName(firstName, surname, patronymic);
         this.identifier = identifier;
         this.department = department;
         this.grades = new ArrayList<>(semesterCount);
@@ -91,30 +38,6 @@ public class Transcript {
      */
     Transcript(PersonalName personalName, int identifier, String department, Collection<String>[] subjects) {
         this.personalName = personalName;
-        this.identifier = identifier;
-        this.department = department;
-        this.grades = new ArrayList<>(subjects.length);
-        for(int i = 0; i < subjects.length; i++) {
-            grades.add(new HashMap<>(subjects[i].size()));
-            for(String subject : subjects[i]) {
-                grades.get(i).put(subject, null);
-            }
-        }
-        this.thesis = null;
-    }
-
-    /**
-     * <p>Constructor which creates new transcript with given values.</p>
-     *
-     * @param firstName student's first name.
-     * @param surname student's surname.
-     * @param patronymic student's patronymic.
-     * @param identifier unique transcript's identifier.
-     * @param department student's department.
-     * @param subjects <code>Collection</code> containing subjects to be added.
-     */
-    Transcript(String firstName, String surname, String patronymic, int identifier, String department, Collection<String>[] subjects) {
-        this.personalName = new PersonalName(firstName, surname, patronymic);
         this.identifier = identifier;
         this.department = department;
         this.grades = new ArrayList<>(subjects.length);
@@ -357,62 +280,4 @@ public class Transcript {
     private final String department;  // student's department
     private final ArrayList<HashMap<String, Integer>> grades;  // for storing pairs like <subject, grade> separately for each semester
     private Integer thesis;  // for storing thesis grade
-
-    /**
-     * <p>Class for representing personal name.</p>
-     */
-    public static class PersonalName {
-        /**
-         * <p>Constructor which creates new personal name with given values.</p>
-         *
-         * @param firstName student's first name.
-         * @param surname student's surname.
-         * @param patronymic student's patronymic.
-         */
-        PersonalName(String firstName, String surname, String patronymic) {
-            this.firstName = firstName;
-            this.surname = surname;
-            this.patronymic = patronymic;
-        }
-
-        /**
-         * <p>Returns student's first name.</p>
-         *
-         * @return student's first name.
-         */
-        public String getFirstName() {
-            return firstName;
-        }
-
-        /**
-         * <p>Returns student's surname.</p>
-         *
-         * @return student's surname.
-         */
-        public String getSurname() {
-            return surname;
-        }
-
-        /**
-         * <p>Returns student's patronymic.</p>
-         *
-         * @return student's patronymic.
-         */
-        public String getPatronymic() {
-            return patronymic;
-        }
-
-        /**
-         * <p>Returns student's full name.</p>
-         *
-         * @return student's full name.
-         */
-        public String getFullName() {
-            return firstName + ' ' + surname + ' ' + patronymic;
-        }
-
-        private final String firstName;  // for storing first name
-        private final String surname;  // for storing surname
-        private final String patronymic;  // for storing patronymic
-    }
 }
