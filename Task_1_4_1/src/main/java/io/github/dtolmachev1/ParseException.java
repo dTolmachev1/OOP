@@ -24,7 +24,7 @@ public class ParseException extends Exception {
      * <p>Constructs new exception with specified message and cause.
      *
      * @param message the detail message.
-     * @param cause the throwable cause.
+     * @param cause   the throwable cause.
      */
     ParseException(String message, Throwable cause) {
         super(message, cause);

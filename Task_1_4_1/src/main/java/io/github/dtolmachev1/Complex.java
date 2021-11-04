@@ -48,15 +48,19 @@ public class Complex extends Number implements Comparable<Complex> {
      */
     Complex(String value) throws NumberFormatException {
         value = preprocessString(value);  // preprocessing input string for parsing
-        if(value.isEmpty() || (value.indexOf('i') != -1 && value.indexOf('i') != value.length() - 1)) {
+        if (value.isEmpty() || (value.indexOf('i') != -1 && value.indexOf('i') != value.length() - 1)) {
             throw new NumberFormatException();
         }
         int idx = value.length() - 1;  // index of beginning of an imaginary part
-        while(idx > 0 && ((value.charAt(idx) != '-' && value.charAt(idx) != '+') || "Ee".indexOf(value.charAt(idx - 1)) != -1)) {
+        while (idx > 0 && ((value.charAt(idx) != '-' && value.charAt(idx) != '+') || "Ee".indexOf(value.charAt(idx - 1)) != -1)) {
             idx--;
         }
-        this.re = idx != 0 || (value.charAt(value.length() - 1) != 'I' && value.charAt(value.length() - 1) != 'i') ? Double.parseDouble(value.substring(0, idx != 0 ? idx : value.length())) : 0;
-        this.im = value.charAt(value.length() - 1) == 'I' || value.charAt(value.length() - 1) == 'i' ? Double.parseDouble(value.substring(idx, value.length() - 1)) : 0;
+        if (idx != 0 || (value.charAt(value.length() - 1) != 'I' && value.charAt(value.length() - 1) != 'i')) {
+            this.re = Double.parseDouble(value.substring(0, idx != 0 ? idx : value.length()));
+        } else this.re = 0;
+        if (value.charAt(value.length() - 1) == 'I' || value.charAt(value.length() - 1) == 'i') {
+            this.im = Double.parseDouble(value.substring(idx, value.length() - 1));
+        } else this.im = 0;
     }
 
     /**
@@ -108,13 +112,13 @@ public class Complex extends Number implements Comparable<Complex> {
      */
     public String toString() {
         String value = "";  // to be returned
-        if(re != 0) {
+        if (re != 0) {
             value += Double.toString(re);
-            if(im > 0) {
+            if (im > 0) {
                 value += '+';
             }
         }
-        if(im != 0) {
+        if (im != 0) {
             value += Double.toString(im) + 'i';
         }
         value = preprocessString(value);
@@ -122,193 +126,214 @@ public class Complex extends Number implements Comparable<Complex> {
     }
 
     /**
+     * <p>Checks whether given number belongs to the complex plane, i.e. has an imaginary part.</p>
+     *
+     * @return <code>true</code> if this number has non-zero imaginary part or <code>false</code> otherwise.
+     */
+    public boolean isComplex() {
+        return im != 0;
+    }
+
+    /**
+     * <p>Returns the real part of given number.</p>
+     *
+     * @return real part of it's number.
+     */
+    public double getReal() {
+        return re;
+    }
+
+    /**
+     * <p>Returns the imaginary part of given number.</p>
+     *
+     * @return imaginary part of it's number.
+     */
+    public double getImaginary() {
+        return im;
+    }
+
+    /**
      * <p>Returns the sum of given complex numbers.</p>
      *
-     * @param a left operand.
-     * @param b right operand.
+     * @param value right operand.
      * @return sum of these numbers.
      */
-    public static Complex add(Complex a, Complex b) {
-        return valueOf(a.re + b.re, a.im + b.im);  // (a+bi) + (c+di) = ((a+c) + (b+d)i)
+    public Complex add(Complex value) {
+        return valueOf(this.re + value.re, this.im + value.im);  // (a+bi) + (c+di) = ((a+c) + (b+d)i)
     }
 
     /**
      * <p>Returns the difference of given complex numbers.</p>
      *
-     * @param a left operand.
-     * @param b right operand.
+     * @param value right operand.
      * @return difference of these numbers.
      */
-    public static Complex subtract(Complex a, Complex b) {
-        return valueOf(a.re - b.re, a.im - b.im);  // (a+bi) - (c+di) = ((a-c) + (b-d)i)
+    public Complex subtract(Complex value) {
+        return valueOf(this.re - value.re, this.im - value.im);  // (a+bi) - (c+di) = ((a-c) - (b-d)i)
     }
 
     /**
      * <p>Returns the product of given complex numbers.</p>
      *
-     * @param a left operand.
-     * @param b right operand.
+     * @param value right operand.
      * @return product of these numbers.
      */
-    public static Complex multiply(Complex a, Complex b) {
-        return valueOf(a.re * b.re - a.im * b.im, a.im * b.re + a.re * b.im);  // (a+bi) \times (c+di) = ((a \times c - b \times d) + (b \times c + a \times d)i)
+    public Complex multiply(Complex value) {
+        return valueOf(this.re * value.re - this.im * value.im, this.im * value.re + this.re * value.im);  // (a+bi) \times (c+di) = ((a \times c - b \times d) + (b \times c + a \times d)i)
     }
 
     /**
      * <p>Returns the quotient of given complex numbers.</p>
      *
-     * @param a left operand.
-     * @param b right operand.
+     * @param value right operand.
      * @return quotient of these numbers.
      */
     @SuppressWarnings("SpellCheckingInspection")
-    public static Complex divide(Complex a, Complex b) {
-        double denominator = Math.pow(b.re, 2) + Math.pow(b.im, 2);
-        return valueOf((a.re * b.re + a.im * b.im) / denominator, (a.im * b.re - a.re * b.im) / denominator);  // \frac{a+bi}{c+di} = \frac{(a \times c + b \times d) + (b \times c - a \times d)i}{c^2 + d^2}
+    public Complex divide(Complex value) {
+        double denominator = Math.pow(value.re, 2) + Math.pow(value.im, 2);
+        return valueOf((this.re * value.re + this.im * value.im) / denominator, (this.im * value.re - this.re * value.im) / denominator);  // \frac{a+bi}{c+di} = \frac{(a \times c + b \times d) + (b \times c - a \times d)i}{c^2 + d^2}
     }
 
     /**
      * <p>Returns natural logarithm of a given complex number.</p>
      *
-     * @param a operand.
      * @return natural logarithm of a given number.
      */
     @SuppressWarnings("SpellCheckingInspection")
-    public static Complex log(Complex a) {
-        double rho = abs(a);
-        double theta = Math.atan2(a.re, a.im);
-        return a.im != 0 || a.re < 0 ? valueOf(rho, theta) : valueOf(Math.log(a.re));  // \ln{(a+bi)} = (\sqrt{a^2+b^2} + \arctg{(\frac{b}{a})}i)
+    public Complex log() {
+        double rho = this.abs();
+        double theta = Math.atan2(this.re, this.im);
+        return this.im != 0 || this.re < 0 ? valueOf(rho, theta) : valueOf(Math.log(this.re));  // \ln{(a+bi)} = (\sqrt{a^2+b^2} + \arctg{(\frac{b}{a})}i)
     }
 
     /**
      * <p>Returns given complex number raised to the specified complex power.</p>
      *
-     * @param a left operand.
-     * @param b right operand.
+     * @param value right operand.
      * @return given number raised to the specified power.
      */
     @SuppressWarnings({"SpellCheckingInspection", "DuplicateExpressions"})
-    public static Complex pow(Complex a, Complex b) {
-        if(a.im != 0 || (a.re <= 0 && b.im != 0)) {
-            double rho = abs(a);
-            double theta = Math.atan2(a.re, a.im);
-            return valueOf(Math.pow(rho, b.re) * Math.exp(-1 * b.im * theta) * Math.cos(b.im * Math.log(rho) + b.re * theta), Math.sin(b.im * Math.log(rho) + b.re * theta));  // (a+bi)^{c+di} = (((\sqrt{a^2+b^2})^c \times e^{-d \times \arctg{(\frac{b}{a})}} \times \cos{(d \times \ln{(\sqrt{a^2+b^2})}+c \times \arctg{(\frac{b}{a})})}) + (\sin{(d \times \ln{(\sqrt{a^2+b^2})}+c \times \arctg{(\frac{b}{a})})})i) \forall z=(a+bi), w=(c+di) \colon z, w \in \mathbb{C}
+    public Complex pow(Complex value) {
+        if (this.im != 0 || (this.re <= 0 && value.im != 0)) {
+            double rho = this.abs();
+            double theta = Math.atan2(this.re, this.im);
+            return valueOf(Math.pow(rho, value.re) * Math.exp(-1 * value.im * theta) * Math.cos(value.im * Math.log(rho) + value.re * theta), Math.sin(value.im * Math.log(rho) + value.re * theta));  // (a+bi)^{c+di} = (((\sqrt{a^2+b^2})^c \times e^{-d \times \arctg{(\frac{b}{a})}} \times \cos{(d \times \ln{(\sqrt{a^2+b^2})}+c \times \arctg{(\frac{b}{a})})}) + (\sin{(d \times \ln{(\sqrt{a^2+b^2})}+c \times \arctg{(\frac{b}{a})})})i) \forall z=(a+bi), w=(c+di) \colon z, w \in \mathbb{C}
         }
-        return b.im != 0 ? valueOf(Math.pow(a.re, b.re) * Math.cos(b.im * Math.log(a.re)), Math.sin(b.im * Math.log(a.re))) : valueOf(Math.pow(a.re, b.re));  // a^{c+di} = ((a^c \times \cos{(d \times \ln{(a)})}) + (\sin{(d \times \ln{(a)})})i) \forall a, w==(c+di) \colon a \in \mathbb{R}^+, w \in \mathbb{C}
+        return value.im != 0 ? valueOf(Math.pow(this.re, value.re) * Math.cos(value.im * Math.log(this.re)), Math.sin(value.im * Math.log(this.re))) : valueOf(Math.pow(this.re, value.re));  // a^{c+di} = ((a^c \times \cos{(d \times \ln{(a)})}) + (\sin{(d \times \ln{(a)})})i) \forall a, w==(c+di) \colon a \in \mathbb{R}^+, w \in \mathbb{C}
     }
 
     /**
      * <p>Returns square root of a given complex number.</p>
      *
-     * @param a operand.
      * @return square root of a given number.
      */
     @SuppressWarnings("SpellCheckingInspection")
-    public static Complex sqrt(Complex a) {
-        int sgn = a.im < 0 ? -1 : 1;
-        return a.im != 0 || a.re < 0 ? valueOf(Math.sqrt((a.re + abs(a)) / 2), sgn * Math.sqrt((-a.re + abs(a)) / 2)) : valueOf(Math.sqrt(a.re));  // \sqrt{a+bi} = \frac{(\sqrt{a+\sqrt{a^2+b^2}}) + (\sgn{(b)} \times \sqrt{-a+\sqrt{a^2+b^2}})i}{2}
+    public Complex sqrt() {
+        int signum = this.im < 0 ? -1 : 1;
+        return this.im != 0 || this.re < 0 ? valueOf(Math.sqrt((this.re + this.abs()) / 2), signum * Math.sqrt((-this.re + this.abs()) / 2)) : valueOf(Math.sqrt(this.re));  // \sqrt{a+bi} = \frac{(\sqrt{a+\sqrt{a^2+b^2}}) + (\sgn{(b)} \times \sqrt{-a+\sqrt{a^2+b^2}})i}{2}
     }
 
     /**
      * <p>Returns sine of a given complex number.</p>
      *
-     * @param a operand.
      * @return sine of a given number.
      */
-    public static Complex sin(Complex a) {
-        return a.im != 0 ? valueOf(Math.sin(a.re) * Math.cosh(a.im), Math.cos(a.re) * Math.sinh(a.im)) : valueOf(Math.sin(a.re));  // \sin{(a+bi)} = ((\sin{(a)} \times \ch{(b)}) + (\cos{(a)} \times \sh{(b)})i)
+    public Complex sin() {
+        return this.im != 0 ? valueOf(Math.sin(this.re) * Math.cosh(this.im), Math.cos(this.re) * Math.sinh(this.im)) : valueOf(Math.sin(this.re));  // \sin{(a+bi)} = ((\sin{(a)} \times \ch{(b)}) + (\cos{(a)} \times \sh{(b)})i)
     }
 
     /**
      * <p>Returns cosine of a given complex number.</p>
      *
-     * @param a operand.
      * @return cosine of a given number.
      */
-    public static Complex cos(Complex a) {
-        return a.im != 0 ? valueOf(Math.cos(a.re) * Math.cosh(a.im), -1 * Math.sin(a.re) * Math.sinh(a.im)) : valueOf(Math.cos(a.re));  // \cos{(a+bi)} = ((\cos{(a)} \times \ch{(b)}) - (\sin{(a)} \times \sh{(b)})i)
+    public Complex cos() {
+        return this.im != 0 ? valueOf(Math.cos(this.re) * Math.cosh(this.im), -1 * Math.sin(this.re) * Math.sinh(this.im)) : valueOf(Math.cos(this.re));  // \cos{(a+bi)} = ((\cos{(a)} \times \ch{(b)}) - (\sin{(a)} \times \sh{(b)})i)
     }
 
     /**
      * <p>Returns tangent of a given complex number.</p>
      *
-     * @param a operand.
      * @return tangent of a given number.
      */
-    @SuppressWarnings({"SpellCheckingInspection", "DuplicateExpressions"})
-    public static Complex tan(Complex a) {
-        double denominator = 1 + Math.pow(Math.tan(a.re), 2) * Math.pow(Math.tanh(a.im), 2);
-        return a.im != 0 ? valueOf((Math.tan(a.re) - Math.tan(a.re) * Math.pow(Math.tanh(a.im), 2)) / denominator, (Math.tanh(a.im) + Math.pow(Math.tan(a.re), 2) * Math.tanh(a.im)) / denominator) : valueOf(Math.tan(a.re));  // \tg{(a+bi)} = \frac{(\tg{(a)}-\tg{(a)} \times \th^2{(b)}) + (\th{(b)}+\tg^2{(a)} \times \th{(b)})i}{1 + \tg^2{(a)} \times \th^2{(b)}}
+    @SuppressWarnings("SpellCheckingInspection")
+    public Complex tan() {
+        double denominator = 1 + Math.pow(Math.tan(this.re), 2) * Math.pow(Math.tanh(this.im), 2);
+        return this.im != 0 ? valueOf((Math.tan(this.re) - Math.tan(this.re) * Math.pow(Math.tanh(this.im), 2)) / denominator, (Math.tanh(this.im) + Math.pow(Math.tan(this.re), 2) * Math.tanh(this.im)) / denominator) : valueOf(Math.tan(this.re));  // \tg{(a+bi)} = \frac{(\tg{(a)}-\tg{(a)} \times \th^2{(b)}) + (\th{(b)}+\tg^2{(a)} \times \th{(b)})i}{1 + \tg^2{(a)} \times \th^2{(b)}}
     }
 
     /**
      * <p>Returns cotangent of a given complex number.</p>
      *
-     * @param a operand.
      * @return cotangent of a given number.
      */
-    @SuppressWarnings({"SpellCheckingInspection", "DuplicateExpressions"})
-    public static Complex cot(Complex a) {
-        double denominator = Math.pow(1.0 / Math.tan(a.re), 2) + Math.pow(1.0 / Math.tanh(a.im), 2);
-        return a.im != 0 ? valueOf(((1.0 / Math.tan(a.re)) * Math.pow(1.0 / Math.tanh(a.im), 2) - (1.0 / Math.tan(a.re))) / denominator, (-1 * Math.pow(1.0 / Math.tan(a.re), 2) * (1.0 / Math.tanh(a.im)) - (1.0 / Math.tanh(a.im))) / denominator) : valueOf(1.0 / Math.tan(a.re));  // \cth{(a+bi)} = \frac{(\ctg{(a)} \times \cth^2{(b)}-\ctg{(a)}) - (\ctg^2{(a)} \times \cth{(b)}-\cth{(b)})i}{\ctg^2{(a)} + \cth^2{(b)}}
+    @SuppressWarnings("SpellCheckingInspection")
+    public Complex cot() {
+        double denominator = Math.pow(1.0 / Math.tan(this.re), 2) + Math.pow(1.0 / Math.tanh(this.im), 2);
+        return this.im != 0 ? valueOf(((1.0 / Math.tan(this.re)) * Math.pow(1.0 / Math.tanh(this.im), 2) - (1.0 / Math.tan(this.re))) / denominator, (-1 * Math.pow(1.0 / Math.tan(this.re), 2) * (1.0 / Math.tanh(this.im)) - (1.0 / Math.tanh(this.im))) / denominator) : valueOf(1.0 / Math.tan(this.re));  // \ctg{(a+bi)} = \frac{(\ctg{(a)} \times \cth^2{(b)}-\ctg{(a)}) - (\ctg^2{(a)} \times \cth{(b)}-\cth{(b)})i}{\ctg^2{(a)} + \cth^2{(b)}}
     }
 
     /**
      * <p>Returns the absolute value (or modulus) of a given complex number.</p>
      *
-     * @param a operand.
      * @return absolute value of this number.
      */
-    public static double abs(Complex a) {
-        return a.im != 0 ? Math.sqrt(Math.pow(a.re, 2) + Math.pow(a.im, 2)) : Math.abs(a.re);  // |a+bi| = \sqrt{a^2+b^2}
+    public double abs() {
+        return this.im != 0 ? Math.sqrt(Math.pow(this.re, 2) + Math.pow(this.im, 2)) : Math.abs(this.re);  // |a+bi| = \sqrt{a^2+b^2}
     }
 
     /**
      * <p>Returns the value of this <code>Complex</code> as a <code>byte</code> after a narrowing primitive conversion.</p>
+     *
      * @return the absolute value of this object converted to type <code>byte</code>.
      */
     public byte byteValue() {
-        return (byte) abs(this);
+        return (byte) abs();
     }
 
     /**
      * <p>Returns the value of this <code>Complex</code> as a <code>short</code> after a narrowing primitive conversion.</p>
+     *
      * @return the absolute value of this object converted to type <code>short</code>.
      */
     public short shortValue() {
-        return (short) abs(this);
+        return (short) abs();
     }
 
     /**
      * <p>Returns the value of this <code>Complex</code> as an <code>int</code> after a narrowing primitive conversion.</p>
+     *
      * @return the absolute value of this object converted to type <code>int</code>.
      */
     public int intValue() {
-        return (int) abs(this);
+        return (int) abs();
     }
 
     /**
      * <p>Returns the value of this <code>Complex</code> as a <code>long</code> after a narrowing primitive conversion.</p>
+     *
      * @return the absolute value of this object converted to type <code>long</code>.
      */
     public long longValue() {
-        return (long) abs(this);
+        return (long) abs();
     }
 
     /**
      * <p>Returns the value of this <code>Complex</code> as a <code>float</code> after a narrowing primitive conversion.</p>
+     *
      * @return the absolute value of this object converted to type <code>float</code>.
      */
     public float floatValue() {
-        return (float) abs(this);
+        return (float) abs();
     }
 
     /**
      * <p>Returns the value of this <code>Complex</code> as a <code>double</code> after a narrowing primitive conversion.</p>
+     *
      * @return the absolute value of this object converted to type <code>double</code>.
      */
     public double doubleValue() {
-        return abs(this);
+        return abs();
     }
 
     /**
@@ -318,29 +343,27 @@ public class Complex extends Number implements Comparable<Complex> {
      * @return <code>0</code> if the numbers are equaled, negative integer if first value is less than second, and positive integer if first value is greater than second.
      */
     public int compareTo(Complex complex) {
-        return Double.compare(abs(this), abs(complex));
+        return Double.compare(this.abs(), complex.abs());
     }
 
     /**
      * <p>Returns the smallest of two complex numbers.</p>
      *
-     * @param a the first operand.
-     * @param b the second operand.
+     * @param value the second operand.
      * @return the smallest of <code>a</code> and <code>b</code>.
      */
-    public static Complex min(Complex a, Complex b) {
-        return a.compareTo(b) <= 0 ? a : b;
+    public Complex min(Complex value) {
+        return this.compareTo(value) <= 0 ? this : value;
     }
 
     /**
      * <p>Returns the greatest of two complex numbers.</p>
      *
-     * @param a the first operand.
-     * @param b the second operand.
+     * @param value the second operand.
      * @return the greatest of <code>a</code> and <code>b</code>.
      */
-    public static Complex max(Complex a, Complex b) {
-        return a.compareTo(b) <= 0 ? b : a;
+    public Complex max(Complex value) {
+        return this.compareTo(value) <= 0 ? value : this;
     }
 
     private final double re;  // for storing real part
