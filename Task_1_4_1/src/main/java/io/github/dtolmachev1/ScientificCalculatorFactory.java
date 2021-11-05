@@ -10,6 +10,7 @@ public class ScientificCalculatorFactory implements CalculatorFactory {
      * @param type type of the calculator to create.
      * @return newly created instance of <code>Calculator</code> class or <code>null</code> if specified calculator can't be created.
      */
+    @Override
     public Calculator getCalculatorInstance(String type) {
         switch(type) {
             case "Double": return new DoubleCalculator();
