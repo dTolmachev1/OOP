@@ -1,4 +1,4 @@
-package io.github.dtolmachev1;
+package io.github.dtolmachev1.Calculators;
 
 /**
  * <p>Interface for calculator factory.</p>

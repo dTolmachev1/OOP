@@ -1,4 +1,8 @@
-package io.github.dtolmachev1;
+package io.github.dtolmachev1.Calculators.Scientific;
+
+        import io.github.dtolmachev1.Calculators.Calculator;
+        import io.github.dtolmachev1.Calculators.ParseException;
+        import io.github.dtolmachev1.Operations.Double.DoubleOperationFactory;
 
         import java.util.EmptyStackException;
         import java.util.Stack;
@@ -10,7 +14,7 @@ public class DoubleCalculator extends Calculator {
     /**
      * <p>Default constructor to initialize calculator.</p>
      */
-    DoubleCalculator() {
+    public DoubleCalculator() {
         this.operationFactory = new DoubleOperationFactory();
     }
 
@@ -26,10 +30,10 @@ public class DoubleCalculator extends Calculator {
         Stack<Double> stack = new Stack<>();  // temporary stack for computation
         String[] atoms = expression.split("\\s");  // splitting input string into single atoms (operators and operands)
         for (int i = atoms.length - 1; i >= 0; i--) {
-            if (isOperator(atoms[i])) {
+            if (operationFactory.isOperator(atoms[i])) {
                 try {
                     Double a = stack.pop();
-                    if (isBinaryOperator(atoms[i])) {
+                    if (operationFactory.isBinaryOperator(atoms[i])) {
                         Double b = stack.pop();
                         stack.push((Double) operationFactory.getOperationInstance(atoms[i], a, b).eval());
                     } else stack.push((Double) operationFactory.getOperationInstance(atoms[i], a).eval());

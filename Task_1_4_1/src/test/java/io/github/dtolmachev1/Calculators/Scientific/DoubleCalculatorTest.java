@@ -1,4 +1,8 @@
-package io.github.dtolmachev1;
+package io.github.dtolmachev1.Calculators.Scientific;
+
+import io.github.dtolmachev1.Calculators.Calculator;
+import io.github.dtolmachev1.Calculators.CalculatorFactory;
+import io.github.dtolmachev1.Calculators.ParseException;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;

@@ -1,9 +1,9 @@
-package io.github.dtolmachev1;
+package io.github.dtolmachev1.Operations;
 
 /**
  * <p>Interface for some arithmetic operation.</p>
  */
-interface Operation {
+public interface Operation {
     /**
      * <p>Evaluates the specified operation returning it's result.</p>
      *
