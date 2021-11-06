@@ -1,4 +1,4 @@
-package io.github.dtolmachev1;
+package io.github.dtolmachev1.Calculators;
 
 /**
  * <p>Class for parsing exceptions.</p>
@@ -7,7 +7,7 @@ public class ParseException extends Exception {
     /**
      * <p>Constructs new exception with empty message and cause.</p>
      */
-    ParseException() {
+    public ParseException() {
         super();
     }
 
@@ -16,7 +16,7 @@ public class ParseException extends Exception {
      *
      * @param message the detail message.
      */
-    ParseException(String message) {
+    public ParseException(String message) {
         super(message);
     }
 
@@ -26,7 +26,7 @@ public class ParseException extends Exception {
      * @param message the detail message.
      * @param cause   the throwable cause.
      */
-    ParseException(String message, Throwable cause) {
+    public ParseException(String message, Throwable cause) {
         super(message, cause);
     }
 
@@ -35,7 +35,7 @@ public class ParseException extends Exception {
      *
      * @param cause the throwable cause.
      */
-    ParseException(Throwable cause) {
+    public ParseException(Throwable cause) {
         super(cause);
     }
 }

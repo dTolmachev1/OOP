@@ -1,4 +1,4 @@
-package io.github.dtolmachev1;
+package io.github.dtolmachev1.Numbers;
 
 /**
  * <p>Class for representing complex numbers.</p>
@@ -7,7 +7,7 @@ public class Complex extends Number implements Comparable<Complex> {
     /**
      * <p>Constructor to initialize number with zero values.</p>
      */
-    Complex() {
+    public Complex() {
         this(0, 0);
     }
 
@@ -16,7 +16,7 @@ public class Complex extends Number implements Comparable<Complex> {
      *
      * @param re real part.
      */
-    Complex(double re) {
+    public Complex(double re) {
         this(re, 0);
     }
 
@@ -26,7 +26,7 @@ public class Complex extends Number implements Comparable<Complex> {
      * @param re real part.
      * @param im imaginary part.
      */
-    Complex(double re, double im) {
+    public Complex(double re, double im) {
         this.re = re;
         this.im = im;
     }
@@ -36,7 +36,7 @@ public class Complex extends Number implements Comparable<Complex> {
      *
      * @param complex number which value should be copied.
      */
-    Complex(Complex complex) {
+    public Complex(Complex complex) {
         this(complex.re, complex.im);
     }
 
@@ -46,7 +46,7 @@ public class Complex extends Number implements Comparable<Complex> {
      * @param value string to be parsed.
      * @throws NumberFormatException if the string does not contain a parsable number.
      */
-    Complex(String value) throws NumberFormatException {
+    public Complex(String value) throws NumberFormatException {
         value = preprocessString(value);  // preprocessing input string for parsing
         if (value.isEmpty() || (value.indexOf('i') != -1 && value.indexOf('i') != value.length() - 1)) {
             throw new NumberFormatException();

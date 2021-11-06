@@ -1,4 +1,4 @@
-package io.github.dtolmachev1;
+package io.github.dtolmachev1.Calculators;
 
 import java.util.ServiceLoader;
 
@@ -9,7 +9,7 @@ public class CalculatorLoader {
     /**
      * <p>Default constructor to initialize calculator loader.</p>
      */
-    CalculatorLoader() {
+    public CalculatorLoader() {
         this.calculatorLoader = ServiceLoader.load(CalculatorFactory.class);
     }
 

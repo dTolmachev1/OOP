@@ -1,4 +1,9 @@
-package io.github.dtolmachev1;
+package io.github.dtolmachev1.Calculators.Scientific;
+
+import io.github.dtolmachev1.Calculators.Calculator;
+import io.github.dtolmachev1.Calculators.ParseException;
+import io.github.dtolmachev1.Numbers.Complex;
+import io.github.dtolmachev1.Operations.Complex.ComplexOperationFactory;
 
 import java.util.EmptyStackException;
 import java.util.Stack;
@@ -10,7 +15,7 @@ public class ComplexCalculator extends Calculator {
     /**
      * <p>Default constructor to initialize calculator.</p>
      */
-    ComplexCalculator() {
+    public ComplexCalculator() {
         this.operationFactory = new ComplexOperationFactory();
     }
 
@@ -26,10 +31,10 @@ public class ComplexCalculator extends Calculator {
         Stack<Complex> stack = new Stack<>();  // temporary stack for computation
         String[] atoms = expression.split("\\s");  // splitting input string into single atoms (operators and operands)
         for (int i = atoms.length - 1; i >= 0; i--) {
-            if (isOperator(atoms[i])) {
+            if (operationFactory.isOperator(atoms[i])) {
                 try {
                     Complex a = stack.pop();
-                    if (isBinaryOperator(atoms[i])) {
+                    if (operationFactory.isBinaryOperator(atoms[i])) {
                         Complex b = stack.pop();
                         stack.push((Complex) operationFactory.getOperationInstance(atoms[i], a, b).eval());
                     } else stack.push((Complex) operationFactory.getOperationInstance(atoms[i], a).eval());

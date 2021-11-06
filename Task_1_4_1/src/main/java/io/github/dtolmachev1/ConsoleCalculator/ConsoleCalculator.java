@@ -1,4 +1,8 @@
-package io.github.dtolmachev1;
+package io.github.dtolmachev1.ConsoleCalculator;
+
+import io.github.dtolmachev1.Calculators.Calculator;
+import io.github.dtolmachev1.Calculators.CalculatorLoader;
+import io.github.dtolmachev1.Calculators.ParseException;
 
 import java.util.Scanner;
 
