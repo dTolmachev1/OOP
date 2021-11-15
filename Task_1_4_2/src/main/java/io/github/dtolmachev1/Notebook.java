@@ -46,7 +46,9 @@ public class Notebook {
      */
     public Notebook(Collection<Note> notes) {
         this();
-        notes.forEach(note -> this.notes.add(new Note(note)));
+        for (Note note : notes) {
+            this.notes.add(note.clone());
+        }
     }
 
     /**
@@ -57,7 +59,9 @@ public class Notebook {
      */
     public Notebook(Collection<Note> notes, String pattern) {
         this(pattern);
-        notes.forEach(note -> this.notes.add(new Note(note)));
+        for (Note note : notes) {
+            this.notes.add(note.clone());
+        }
     }
 
     /**
@@ -68,7 +72,9 @@ public class Notebook {
      */
     public Notebook(Collection<Note> notes, DateTimeFormatter formatter) {
         this(formatter);
-        notes.forEach(note -> this.notes.add(new Note(note)));
+        for (Note note : notes) {
+            this.notes.add(note.clone());
+        }
     }
 
     /**
@@ -77,7 +83,11 @@ public class Notebook {
      * @return Notebook with notes sorted by creation date.
      */
     public Notebook sortByCreationDate() {
-        return new Notebook(this.notes.stream().sorted(Comparator.comparing(Note::getCreationDate)).map(Note::new).collect(Collectors.toList()), this.formatter);
+        List<Note> notes = this.notes.stream()
+                .sorted(Comparator.comparing(Note::getCreationDate))
+                .map(Note::clone)
+                .collect(Collectors.toList());
+        return new Notebook(notes, this.formatter);
     }
 
     /**
@@ -86,7 +96,11 @@ public class Notebook {
      * @return Notebook with notes sorted by modification date.
      */
     public Notebook sortByModificationDate() {
-        return new Notebook(this.notes.stream().sorted(Comparator.comparing(Note::getModificationDate)).map(Note::new).collect(Collectors.toList()), this.formatter);
+        List<Note> notes = this.notes.stream()
+                .sorted(Comparator.comparing(Note::getModificationDate))
+                .map(Note::clone)
+                .collect(Collectors.toList());
+        return new Notebook(notes, this.formatter);
     }
 
     /**
@@ -95,7 +109,11 @@ public class Notebook {
      * @return Notebook with notes sorted by name.
      */
     public Notebook sortByName() {
-        return new Notebook(this.notes.stream().sorted(Comparator.comparing(Note::getName)).map(Note::new).collect(Collectors.toList()), this.formatter);
+        List<Note> notes = this.notes.stream()
+                .sorted(Comparator.comparing(Note::getName))
+                .map(Note::clone)
+                .collect(Collectors.toList());
+        return new Notebook(notes, this.formatter);
     }
 
     /**
@@ -108,12 +126,15 @@ public class Notebook {
     public Notebook filterByCreationDate(String from, String to) {
         Stream<Note> stream = this.notes.stream();  // stream of notes
         if(from != null) {
-            stream = stream.filter(note -> (note.getCreationDate().compareTo(LocalDateTime.parse(from, formatter)) >= 0));
+            LocalDateTime dateFrom = LocalDateTime.parse(from, formatter);
+            stream = stream.filter(note -> (note.getCreationDate().compareTo(dateFrom) >= 0));
         }
         if(to != null) {
-            stream = stream.filter(note -> (note.getCreationDate().compareTo(LocalDateTime.parse(to, formatter)) <= 0));
+            LocalDateTime dateTo = LocalDateTime.parse(to, formatter);
+            stream = stream.filter(note -> (note.getCreationDate().compareTo(dateTo) <= 0));
         }
-        return new Notebook(stream.map(Note::new).collect(Collectors.toList()), this.formatter);
+        List<Note> notes = stream.map(Note::clone).collect(Collectors.toList());
+        return new Notebook(notes, this.formatter);
     }
 
     /**
@@ -126,12 +147,15 @@ public class Notebook {
     public Notebook filterByModificationDate(String from, String to) {
         Stream<Note> stream = this.notes.stream();  // stream of notes
         if(from != null) {
-            stream = stream.filter(note -> (note.getModificationDate().compareTo(LocalDateTime.parse(from, formatter)) >= 0));
+            LocalDateTime dateFrom = LocalDateTime.parse(from, formatter);
+            stream = stream.filter(note -> (note.getModificationDate().compareTo(dateFrom) >= 0));
         }
         if(to != null) {
-            stream = stream.filter(note -> (note.getModificationDate().compareTo(LocalDateTime.parse(to, formatter)) <= 0));
+            LocalDateTime dateTo = LocalDateTime.parse(to, formatter);
+            stream = stream.filter(note -> (note.getModificationDate().compareTo(dateTo) <= 0));
         }
-        return new Notebook(stream.map(Note::new).collect(Collectors.toList()), this.formatter);
+        List<Note> notes = stream.map(Note::clone).collect(Collectors.toList());
+        return new Notebook(notes, this.formatter);
     }
 
     /**
@@ -141,7 +165,11 @@ public class Notebook {
      * @return Notebook notes which names contain any of specified keywords.
      */
     public Notebook filterByKeywords(List<String> keywords) {
-        return new Notebook(this.notes.stream().filter(note -> keywords.stream().anyMatch(note.getName()::contains)).map(Note::new).collect(Collectors.toList()), this.formatter);
+        List<Note> notes = this.notes.stream()
+                .filter(note -> keywords.stream().anyMatch(note.getName()::contains))
+                .map(Note::clone)
+                .collect(Collectors.toList());
+        return new Notebook(notes, this.formatter);
     }
 
     /**
@@ -150,7 +178,7 @@ public class Notebook {
      * @return list with all notes from this notebook.
      */
     public List<Note> getNotes() {
-        return this.notes.stream().map(Note::new).collect(Collectors.toList());
+        return this.notes.stream().map(Note::clone).collect(Collectors.toList());
     }
 
     /**
@@ -159,7 +187,9 @@ public class Notebook {
      * @param notes List of notes to be copied.
      */
     public void addNotes(Collection<Note> notes) {
-        notes.forEach(note -> this.notes.add(new Note(note)));
+        for (Note note : notes) {
+            this.notes.add(note.clone());
+        }
     }
 
     /**
@@ -169,7 +199,10 @@ public class Notebook {
      * @return Note with specified name or <code>null</code> if it doesn't exist.
      */
     public Note getNote(String name) {
-        return this.notes.stream().filter(note -> (note.getName().compareTo(name) == 0)).map(Note::new).findFirst().orElse(null);
+        return this.notes.stream()
+                .filter(note -> (note.getName().compareTo(name) == 0))
+                .map(Note::clone)
+                .findFirst().orElse(null);
     }
 
     /**
@@ -207,7 +240,7 @@ public class Notebook {
      * @param note Note to be copied.
      */
     public void addNote(Note note) {
-        this.notes.add(new Note(note));
+        this.notes.add(note.clone());
     }
 
     /**
@@ -228,7 +261,9 @@ public class Notebook {
      * @return <code>true</code> if note was changed (note with specified name exists) or <code>false</code> otherwise.
      */
     public boolean renameNote(String from, String to) {
-        Note noteReference = this.notes.stream().filter(note -> (note.getName().compareTo(from) == 0)).findFirst().orElse(null);  // note to be renamed
+        Note noteReference = this.notes.stream()
+                .filter(note -> (note.getName().compareTo(from) == 0))
+                .findFirst().orElse(null);  // note to be renamed
         if(noteReference != null) {
             noteReference.rename(to);
             return true;
@@ -243,7 +278,9 @@ public class Notebook {
      * @return Note's creation date (if note with specified name exists) or <code>null</code> otherwise.
      */
     public LocalDateTime getNoteCreationDate(String name) {
-        Note noteReference = this.notes.stream().filter(note -> (note.getName().compareTo(name) == 0)).findFirst().orElse(null);  // searching for the specified note
+        Note noteReference = this.notes.stream()
+                .filter(note -> (note.getName().compareTo(name) == 0))
+                .findFirst().orElse(null);  // searching for the specified note
         return noteReference != null ? noteReference.getCreationDate() : null;
     }
 
@@ -254,7 +291,9 @@ public class Notebook {
      * @return Note's modification date (if note with specified name exists) or <code>null</code> otherwise.
      */
     public LocalDateTime getNoteModificationDate(String name) {
-        Note noteReference = this.notes.stream().filter(note -> (note.getName().compareTo(name) == 0)).findFirst().orElse(null);  // searching for the specified note
+        Note noteReference = this.notes.stream()
+                .filter(note -> (note.getName().compareTo(name) == 0))
+                .findFirst().orElse(null);  // searching for the specified note
         return noteReference != null ? noteReference.getModificationDate() : null;
     }
 
@@ -265,7 +304,9 @@ public class Notebook {
      * @return Note's text (if note with specified name exists) or <code>null</code> otherwise.
      */
     public String getNoteContent(String name) {
-        Note noteReference = this.notes.stream().filter(note -> (note.getName().compareTo(name) == 0)).findFirst().orElse(null);  // searching for the specified note
+        Note noteReference = this.notes.stream()
+                .filter(note -> (note.getName().compareTo(name) == 0))
+                .findFirst().orElse(null);  // searching for the specified note
         return noteReference != null ? noteReference.getContent() : null;
     }
 
@@ -277,7 +318,9 @@ public class Notebook {
      * @return <code>true</code> if note was changed (note with specified name exists) or <code>false</code> otherwise.
      */
     public boolean setNoteContent(String name, String content) {
-        Note noteReference = this.notes.stream().filter(note -> (note.getName().compareTo(name) == 0)).findFirst().orElse(null);  // note to be changed
+        Note noteReference = this.notes.stream()
+                .filter(note -> (note.getName().compareTo(name) == 0))
+                .findFirst().orElse(null);  // note to be changed
         if(noteReference != null) {
             noteReference.setContent(content);
             return true;

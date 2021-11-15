@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-import java.util.ListIterator;
 
 class NotebookTest {
     @BeforeAll
@@ -31,100 +30,58 @@ class NotebookTest {
 
     @Test
     @DisplayName("Sort by creation date")
-    @SuppressWarnings("ConstantConditions")
     void sortByCreationDate_Test() {
         List<Note> src = notebook.sortByCreationDate().getNotes();
         List<Note> exp = notebook.getNotes();
         exp.sort(Comparator.comparing(Note::getCreationDate));
-        ListIterator<Note> firstIt = src.listIterator();
-        ListIterator<Note> secondIt = exp.listIterator();
-        while(firstIt.hasNext() && secondIt.hasNext()) {
-            Note firstNote = firstIt.next();
-            Note secondNote = secondIt.next();
-            Assertions.assertAll("Comparing src and exp", () -> Assertions.assertEquals(firstNote.getCreationDate(), secondNote.getCreationDate()), () -> Assertions.assertEquals(firstNote.getModificationDate(), secondNote.getModificationDate()), () -> Assertions.assertEquals(firstNote.getName(), secondNote.getName()), () -> Assertions.assertEquals(firstNote.getContent(), secondNote.getContent()));
-        }
+        Assertions.assertEquals(src, exp);
     }
 
     @Test
     @DisplayName("Sort by modification date")
-    @SuppressWarnings("ConstantConditions")
     void sortByModificationDate_Test() {
         List<Note> src = notebook.sortByModificationDate().getNotes();
         List<Note> exp = notebook.getNotes();
         exp.sort(Comparator.comparing(Note::getModificationDate));
-        ListIterator<Note> firstIt = src.listIterator();
-        ListIterator<Note> secondIt = exp.listIterator();
-        while(firstIt.hasNext() && secondIt.hasNext()) {
-            Note firstNote = firstIt.next();
-            Note secondNote = secondIt.next();
-            Assertions.assertAll("Comparing src and exp", () -> Assertions.assertEquals(firstNote.getCreationDate(), secondNote.getCreationDate()), () -> Assertions.assertEquals(firstNote.getModificationDate(), secondNote.getModificationDate()), () -> Assertions.assertEquals(firstNote.getName(), secondNote.getName()), () -> Assertions.assertEquals(firstNote.getContent(), secondNote.getContent()));
-        }
+        Assertions.assertEquals(src, exp);
     }
 
     @Test
     @DisplayName("Sort by name")
-    @SuppressWarnings("ConstantConditions")
     void sortByName_Test() {
         List<Note> src = notebook.sortByName().getNotes();
         List<Note> exp = notebook.getNotes();
         exp.sort(Comparator.comparing(Note::getName));
-        ListIterator<Note> firstIt = src.listIterator();
-        ListIterator<Note> secondIt = exp.listIterator();
-        while(firstIt.hasNext() && secondIt.hasNext()) {
-            Note firstNote = firstIt.next();
-            Note secondNote = secondIt.next();
-            Assertions.assertAll("Comparing src and exp", () -> Assertions.assertEquals(firstNote.getCreationDate(), secondNote.getCreationDate()), () -> Assertions.assertEquals(firstNote.getModificationDate(), secondNote.getModificationDate()), () -> Assertions.assertEquals(firstNote.getName(), secondNote.getName()), () -> Assertions.assertEquals(firstNote.getContent(), secondNote.getContent()));
-        }
+        Assertions.assertEquals(src, exp);
     }
 
     @Test
     @DisplayName("Filter by creation date")
-    @SuppressWarnings("ConstantConditions")
     void filterByCreationDate_Test() {
         List<Note> src = notebook.filterByCreationDate("01.01.2000 00:00", "31.12.2020 23:59").getNotes();
         List<Note> exp = notebook.getNotes();
-        exp.removeIf(note -> (note.getCreationDate().compareTo(LocalDateTime.parse("01.01.2000 00:00", formatter)) >= 0));
-                exp.removeIf(note -> (note.getCreationDate().compareTo(LocalDateTime.parse("31.12.2020 23:59", formatter)) <= 0));
-        ListIterator<Note> firstIt = src.listIterator();
-        ListIterator<Note> secondIt = exp.listIterator();
-        while(firstIt.hasNext() && secondIt.hasNext()) {
-            Note firstNote = firstIt.next();
-            Note secondNote = secondIt.next();
-            Assertions.assertAll("Comparing src and exp", () -> Assertions.assertEquals(firstNote.getCreationDate(), secondNote.getCreationDate()), () -> Assertions.assertEquals(firstNote.getModificationDate(), secondNote.getModificationDate()), () -> Assertions.assertEquals(firstNote.getName(), secondNote.getName()), () -> Assertions.assertEquals(firstNote.getContent(), secondNote.getContent()));
-        }
+        exp.removeIf(note -> (note.getCreationDate().compareTo(LocalDateTime.parse("01.01.2000 00:00", formatter)) <= 0));
+                exp.removeIf(note -> (note.getCreationDate().compareTo(LocalDateTime.parse("31.12.2020 23:59", formatter)) >= 0));
+        Assertions.assertEquals(src, exp);
     }
 
     @Test
     @DisplayName("Filter by modification date")
-    @SuppressWarnings("ConstantConditions")
     void filterByModificationDate_Test() {
         List<Note> src = notebook.filterByModificationDate("01.01.2000 00:00", "31.12.2020 23:59").getNotes();
         List<Note> exp = notebook.getNotes();
-        exp.removeIf(note -> (note.getModificationDate().compareTo(LocalDateTime.parse("01.01.2000 00:00", formatter)) >= 0));
-        exp.removeIf(note -> (note.getModificationDate().compareTo(LocalDateTime.parse("31.12.2020 23:59", formatter)) <= 0));
-        ListIterator<Note> firstIt = src.listIterator();
-        ListIterator<Note> secondIt = exp.listIterator();
-        while(firstIt.hasNext() && secondIt.hasNext()) {
-            Note firstNote = firstIt.next();
-            Note secondNote = secondIt.next();
-            Assertions.assertAll("Comparing src and exp", () -> Assertions.assertEquals(firstNote.getCreationDate(), secondNote.getCreationDate()), () -> Assertions.assertEquals(firstNote.getModificationDate(), secondNote.getModificationDate()), () -> Assertions.assertEquals(firstNote.getName(), secondNote.getName()), () -> Assertions.assertEquals(firstNote.getContent(), secondNote.getContent()));
-        }
+        exp.removeIf(note -> (note.getModificationDate().compareTo(LocalDateTime.parse("01.01.2000 00:00", formatter)) <= 0));
+        exp.removeIf(note -> (note.getModificationDate().compareTo(LocalDateTime.parse("31.12.2020 23:59", formatter)) >= 0));
+        Assertions.assertEquals(src, exp);
     }
 
     @Test
     @DisplayName("Filter by keywords")
-    @SuppressWarnings("ConstantConditions")
     void filterByKeywords_Test() {
         List<Note> src = notebook.filterByKeywords(Arrays.asList("Beginning", "Ending")).getNotes();
         List<Note> exp = notebook.getNotes();
         exp.removeIf(note -> Arrays.stream(new String[]{"Beginning", "Ending"}).noneMatch(note.getName()::contains));
-        ListIterator<Note> firstIt = src.listIterator();
-        ListIterator<Note> secondIt = exp.listIterator();
-        while(firstIt.hasNext() && secondIt.hasNext()) {
-            Note firstNote = firstIt.next();
-            Note secondNote = secondIt.next();
-            Assertions.assertAll("Comparing src and exp", () -> Assertions.assertEquals(firstNote.getCreationDate(), secondNote.getCreationDate()), () -> Assertions.assertEquals(firstNote.getModificationDate(), secondNote.getModificationDate()), () -> Assertions.assertEquals(firstNote.getName(), secondNote.getName()), () -> Assertions.assertEquals(firstNote.getContent(), secondNote.getContent()));
-        }
+        Assertions.assertEquals(src, exp);
     }
 
     @Test
@@ -148,12 +105,11 @@ class NotebookTest {
 
     @Test
     @DisplayName("Get note")
-    @SuppressWarnings("ConstantConditions")
     void getNote_Test() {
         List<Note> notes = notebook.getNotes();
         for(Note note : notes) {
             Note other = notebook.getNote(note.getName());
-            Assertions.assertAll("Comparing note and other", () -> Assertions.assertEquals(note.getCreationDate(), other.getCreationDate()), () -> Assertions.assertEquals(note.getModificationDate(), other.getModificationDate()), () -> Assertions.assertEquals(note.getName(), other.getName()), () -> Assertions.assertEquals(note.getContent(), other.getContent()));
+            Assertions.assertEquals(note, other);
         }
     }
 
@@ -186,14 +142,13 @@ class NotebookTest {
 
     @Test
     @DisplayName("Add copy of already existing note")
-    @SuppressWarnings("ConstantConditions")
     void addNote_CopyOfAlreadyExistingNote() {
         Notebook tmp = new Notebook();
         for(Note note : notes) {
             tmp.addNote(note);
             Assertions.assertTrue(tmp.noteContains(note.getName()));
             Note other = tmp.getNote(note.getName());
-            Assertions.assertAll("Comparing note and other", () -> Assertions.assertEquals(note.getCreationDate(), other.getCreationDate()), () -> Assertions.assertEquals(note.getModificationDate(), other.getModificationDate()), () -> Assertions.assertEquals(note.getName(), other.getName()), () -> Assertions.assertEquals(note.getContent(), other.getContent()));
+            Assertions.assertEquals(note, other);
         }
     }
 
@@ -262,7 +217,7 @@ class NotebookTest {
         tmp.addNote(note);
         Assertions.assertTrue(tmp.noteContains(note.getName()));
         Note other = tmp.getNote(note.getName());
-        Assertions.assertAll("Comparing note and other", () -> Assertions.assertEquals(note.getCreationDate(), other.getCreationDate()), () -> Assertions.assertEquals(note.getModificationDate(), other.getModificationDate()), () -> Assertions.assertEquals(note.getName(), other.getName()), () -> Assertions.assertEquals(note.getContent(), other.getContent()));
+        Assertions.assertEquals(note, other);
         tmp.removeNote(note.getName());
         Assertions.assertFalse(tmp.noteContains(note.getName()));
         List<Note> notes = tmp.sortByCreationDate().getNotes();

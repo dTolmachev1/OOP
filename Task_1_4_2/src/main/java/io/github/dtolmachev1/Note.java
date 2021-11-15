@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 /**
  * <p>Class for single note.</p>
  */
-public class Note {
+public class Note implements Cloneable {
     /**
      * <p>Constructor to create new empty note.</p>
      *
@@ -26,15 +26,6 @@ public class Note {
     }
 
     /**
-     * <p>Constructor to copy an already existing note.</p>
-     *
-     * @param note Note to be copied.
-     */
-    public Note(Note note) {
-        this(note.creationDate, note.modificationDate, note.name, note.content);
-    }
-
-    /**
      * <p>Constructor to create new note with specified creation date, modification date, name and content.</p>
      *
      * @param creationDate Creation date of newly created note.
@@ -47,6 +38,53 @@ public class Note {
         this.modificationDate = modificationDate;
         this.name = name;
         this.content = content;
+    }
+
+    /**
+     * <p>Checks if this object is equal to the specified one.</p>
+     *
+     * @param object Note instance to compare.
+     * @return <code>true</code> if objects are equal or <code>false</code> otherwise.
+     */
+    @Override
+    public boolean equals(Object object) {
+        if(object == this) {
+            return true;
+        }
+        if(!(object instanceof Note)) {
+            return false;
+        }
+        Note other = (Note) object;
+        boolean creationDateEquals = (this.creationDate == null && other.creationDate == null) || (this.creationDate != null && this.creationDate.equals(other.creationDate));
+        boolean modificationDateEquals = (this.modificationDate == null && other.modificationDate == null) || (this.modificationDate != null && this.modificationDate.equals(other.modificationDate));
+        boolean nameEquals = (this.name == null && other.name == null) || (this.name != null && this.name.equals(other.name));
+        boolean contentEquals = (this.content == null && other.content == null) || (this.content != null && this.content.equals(other.content));
+        return creationDateEquals && modificationDateEquals && nameEquals && contentEquals;
+    }
+
+    /**
+     * <p>A hash code for this note.</p>
+     *
+     * @return A suitable hash code.
+     */
+    public int hashCode() {
+        return creationDate.hashCode() ^ modificationDate.hashCode() ^ name.hashCode() ^ content.hashCode();
+    }
+
+    /**
+     * <p>Creates a copy of this note.</p>
+     *
+     * @return A copy of this note.
+     */
+    @Override
+    public Note clone() {
+        Note note = null;  // for storing cloned object
+        try {
+            note = (Note) super.clone();
+        } catch(CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return note;
     }
 
     /**
