@@ -1,6 +1,7 @@
 package io.github.dtolmachev1;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 /**
  * <p>Class for single note.</p>
@@ -55,20 +56,25 @@ public class Note implements Cloneable {
             return false;
         }
         Note other = (Note) object;
-        boolean creationDateEquals = (this.creationDate == null && other.creationDate == null) || (this.creationDate != null && this.creationDate.equals(other.creationDate));
-        boolean modificationDateEquals = (this.modificationDate == null && other.modificationDate == null) || (this.modificationDate != null && this.modificationDate.equals(other.modificationDate));
-        boolean nameEquals = (this.name == null && other.name == null) || (this.name != null && this.name.equals(other.name));
-        boolean contentEquals = (this.content == null && other.content == null) || (this.content != null && this.content.equals(other.content));
+        boolean creationDateEquals = (this.creationDate == null && other.creationDate == null)
+                || (this.creationDate != null && this.creationDate.equals(other.creationDate));
+        boolean modificationDateEquals = (this.modificationDate == null && other.modificationDate == null)
+                || (this.modificationDate != null && this.modificationDate.equals(other.modificationDate));
+        boolean nameEquals = (this.name == null && other.name == null)
+                || (this.name != null && this.name.equals(other.name));
+        boolean contentEquals = (this.content == null && other.content == null)
+                || (this.content != null && this.content.equals(other.content));
         return creationDateEquals && modificationDateEquals && nameEquals && contentEquals;
     }
 
     /**
      * <p>A hash code for this note.</p>
      *
-     * @return A suitable hash code.
+             * @return A suitable hash code.
      */
+    @Override
     public int hashCode() {
-        return creationDate.hashCode() ^ modificationDate.hashCode() ^ name.hashCode() ^ content.hashCode();
+        return Objects.hashCode(this);
     }
 
     /**

@@ -61,7 +61,7 @@ class NotebookTest {
         List<Note> src = notebook.filterByCreationDate("01.01.2000 00:00", "31.12.2020 23:59").getNotes();
         List<Note> exp = notebook.getNotes();
         exp.removeIf(note -> (note.getCreationDate().compareTo(LocalDateTime.parse("01.01.2000 00:00", formatter)) <= 0));
-                exp.removeIf(note -> (note.getCreationDate().compareTo(LocalDateTime.parse("31.12.2020 23:59", formatter)) >= 0));
+        exp.removeIf(note -> (note.getCreationDate().compareTo(LocalDateTime.parse("31.12.2020 23:59", formatter)) >= 0));
         Assertions.assertEquals(src, exp);
     }
 
