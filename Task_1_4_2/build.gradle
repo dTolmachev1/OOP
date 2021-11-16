@@ -16,16 +16,16 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
 
-    test {
-        useJUnitPlatform()
+test {
+    useJUnitPlatform()
+}
 
-        jar {
-            manifest {
-                attributes(
-                        'Main-Class': 'io.github.dtolmachev1.ConsoleApp'
-                )
-            }
-        }
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'io.github.dtolmachev1.ConsoleApp'
+        )
+    }
 }
 
 task uberJar(type: Jar) {
