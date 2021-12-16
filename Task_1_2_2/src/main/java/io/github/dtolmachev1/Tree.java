@@ -2,10 +2,9 @@ package io.github.dtolmachev1;
 
 import java.io.Serializable;
 import java.lang.Cloneable;
-import java.lang.reflect.ParameterizedType;
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -127,22 +126,51 @@ public class Tree<E extends Comparable<E>> implements Serializable, Cloneable, I
             /* returns true if the iteration has more elements when traversing the tree in the forward direction */
             @Override
             public boolean hasNext() {
+                return count < size;
             }
 
             /* returns the next element in the iteration */
             @Override
             public E next() throws NoSuchElementException {
+                if(!hasNext()) {
+                    throw new NoSuchElementException();
+                }
+                if(cursor.parent != cursor && (cursor.parentIndex >= cursor.parent.children.size() || cursor.parent.children.get(cursor.parentIndex) != cursor)) {
+                    throw new ConcurrentModificationException();
+                }
+                count++;
+                lastRet = cursor;
+                nextCursor();
+                return lastRet.key;
             }
 
-            /* removes subtree with  last element that was returned by next() or previous() as a root from the tree */
+            /* removes subtree with last element that was returned by next() or previous() as a root from the tree */
             @Override
             public void remove() throws IllegalStateException {
+                if(lastRet == null) {
+                    throw new IllegalStateException();
+                }
+                if(lastRet.parent != lastRet && (lastRet.parentIndex >= lastRet.parent.children.size() || lastRet.parent.children.get(lastRet.parentIndex) != lastRet)) {
+                    throw new ConcurrentModificationException();
+                }
+                size -= lastRet.size();
+                lastRet.remove(lastRet.key);
+                lastRet = null;
             }
 
             private Tree<E> cursor = Tree.this;  // current position
             private Tree<E> lastRet = null;  // last returned value
+            private int count = 0; // number of visited nodes
+            private int size = size();  // number of elements in the iterated tree
 
-            private nextCursor() {
+            /* moves cursor to the next position */
+            private void nextCursor() {
+                int index = 0;
+                while(cursor.parent != cursor && index >= cursor.children.size()) {
+                    index = cursor.parentIndex + 1;
+                    cursor = cursor.parent;
+                }
+                cursor = index < cursor.children.size() ? cursor.children.get(index) : null;
             }
         };
     }
@@ -154,27 +182,62 @@ public class Tree<E extends Comparable<E>> implements Serializable, Cloneable, I
      */
     public Iterator<E> breadthFirstSearchIterator() {
         return new Iterator<>() {
-            /* returns true if the iteration has more elements when traversing the tree in the forward direction */
-            @Override
-            public boolean hasNext() {
-            }
+        /* returns true if the iteration has more elements when traversing the tree in the forward direction */
+        @Override
+        public boolean hasNext() {
+            return count < size;
+        }
 
-            /* returns the next element in the iteration */
-            @Override
-            public E next() throws NoSuchElementException {
+        /* returns the next element in the iteration */
+        @Override
+        public E next() throws NoSuchElementException {
+            if(!hasNext()) {
+                throw new NoSuchElementException();
             }
+            if(cursor.parent != cursor && (cursor.parentIndex >= cursor.parent.children.size() || cursor.parent.children.get(cursor.parentIndex) != cursor)) {
+                throw new ConcurrentModificationException();
+            }
+            count++;
+            lastRet = cursor;
+            nextCursor();
+            return lastRet.key;
+        }
 
-            /* removes subtree with  last element that was returned by next() or previous() as a root from the tree */
+            /* removes subtree with last element that was returned by next() or previous() as a root from the tree */
             @Override
             public void remove() throws IllegalStateException {
+                if(lastRet == null) {
+                    throw new IllegalStateException();
+                }
+                if(lastRet.parent != lastRet && (lastRet.parentIndex >= lastRet.parent.children.size() || lastRet.parent.children.get(lastRet.parentIndex) != lastRet)) {
+                    throw new ConcurrentModificationException();
+                }
+                size -= lastRet.size();
+                lastRet.remove(lastRet.key);
+                lastRet = null;
             }
 
-            private int cursor = index;  // current position
-            private int lastRet = -1;  // last returned value
+        private Tree<E> cursor = Tree.this;  // current position
+        private Tree<E> lastRet = null;  // last returned value
+        private int count = 0; // number of visited nodes
+        private int size = size();  // number of elements in the iterated tree
 
-            private nextCursor() {
+            /* moves cursor to the next position */
+        private void nextCursor() {
+            int index = cursor.parentIndex + 1;
+            if(index >= cursor.parent.children.size()) {
+                index = cursor.parent.parentIndex + 1;
+                while(index < cursor.parent.parent.children.size() && cursor.parent.parent.children.get(index).children.isEmpty()) {
+                    index++;
+                }
+                if(index < cursor.parent.parent.children.size()) {
+                    cursor = cursor.parent.parent.children.get(index).children.get(0);
+                }
+                else cursor = !cursor.children.isEmpty() ? cursor.children.get(0) : null;
             }
-        };
+            else cursor = cursor.parent.children.get(index);
+        }
+    };
     }
 
     /**
@@ -184,13 +247,11 @@ public class Tree<E extends Comparable<E>> implements Serializable, Cloneable, I
      */
     @Override
     public int size() {
-        Iterator<E> iterator = iterator();
-        int i = 0;
-        while(iterator.hasNext()) {
-            iterator.next();
-            i++;
+        int size = 0;
+        for(Tree<E> child : children) {
+            size += child.size();
         }
-        return i;
+        return this.key != null ? size + 1 : size;
     }
 
     /**
@@ -265,6 +326,15 @@ public class Tree<E extends Comparable<E>> implements Serializable, Cloneable, I
     }
 
     /**
+     * <p>Returns key of the specified tree.</p>
+     *
+     * @return Key of the specified tree.
+     */
+    public E get() {
+        return this.key;
+    }
+
+    /**
      * <p>Replaces key of the specified element with the given one.</p>
      *
      * @param element To be stored instead of previous key.
@@ -285,10 +355,7 @@ public class Tree<E extends Comparable<E>> implements Serializable, Cloneable, I
      */
     @Override
     public boolean contains(Object object) throws ClassCastException {
-        if(!(object.getClass().isInstance(((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0]))) {
-            throw new ClassCastException();
-        }
-        if(this.key.equals(object)) {
+        if(object.equals(this.key)) {
             return true;
         }
         for(Tree<E> child : children) {
@@ -327,6 +394,7 @@ public class Tree<E extends Comparable<E>> implements Serializable, Cloneable, I
                 this.parent.children.remove(this.parentIndex);
             }
             this.children.clear();
+            this.key = null;
             return true;
         }
         for(Tree<E> child : this.children) {
@@ -379,7 +447,7 @@ public class Tree<E extends Comparable<E>> implements Serializable, Cloneable, I
      */
     @Override
     public boolean addAll(Collection<? extends E> collection) throws ClassCastException {
-        int index = this.size();
+        int index = this.children.size();
         int i = 0;
         for(E element : collection) {
             this.children.add(new Tree<>(element));
@@ -400,15 +468,16 @@ public class Tree<E extends Comparable<E>> implements Serializable, Cloneable, I
     @Override
     public boolean removeAll(Collection<?> collection) throws ClassCastException {
         if(collection.contains(this.key)) {
-            if(this.parent != this) {
-                this.parent.children.remove(this.parentIndex);
-            }
             this.children.clear();
+            this.key = null;
             return true;
         }
         boolean flag = false;
-        for(Tree<E> child : this.children) {
-            if(child.removeAll(collection)) {
+        for(int i = 0; i < this.children.size(); i++) {
+            if(this.children.get(i).removeAll(collection)) {
+                if(this.children.get(i).key == null) {
+                    this.children.remove(i--);
+                }
                 flag = true;
             }
         }
@@ -425,15 +494,16 @@ public class Tree<E extends Comparable<E>> implements Serializable, Cloneable, I
     @Override
     public boolean retainAll(Collection<?> collection) throws ClassCastException {
         if(!collection.contains(this.key)) {
-            if(this.parent != this) {
-                this.parent.children.remove(this.parentIndex);
-            }
             this.children.clear();
+            this.key = null;
             return true;
         }
         boolean flag = false;
-        for(Tree<E> child : this.children) {
-            if(child.retainAll(collection)) {
+        for(int i = 0; i < this.children.size(); i++) {
+            if(this.children.get(i).retainAll(collection)) {
+                if(this.children.get(i).key == null) {
+                    this.children.remove(i--);
+                }
                 flag = true;
             }
         }
