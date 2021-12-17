@@ -16,6 +16,12 @@ import java.util.Objects;
  * @param <E> Type of tree elements.
  */
 public class Tree<E extends Comparable<E>> implements Serializable, Cloneable, Iterable<E>, Collection<E> {
+    private Tree<E> parent;  // parent
+    private int parentIndex;  // index of this node in parent's children list
+    private List<Tree<E>> children;  // list of children
+    private E key;  // actual data
+    private static final int ROOT_PARENT_INDEX = -1;  // parent index for root of the tree
+
     /**
      * <p>Default constructor to initialize empty tree.</p>
      */
@@ -390,15 +396,15 @@ public class Tree<E extends Comparable<E>> implements Serializable, Cloneable, I
     @Override
     public boolean remove(Object object) throws ClassCastException {
         if(this.key.equals(object)) {
-            if(this.parent != this) {
-                this.parent.children.remove(this.parentIndex);
-            }
             this.children.clear();
             this.key = null;
             return true;
         }
-        for(Tree<E> child : this.children) {
-            if(child.remove(object)) {
+        for(int i = 0; i < this.children.size(); i++) {
+            if(this.children.get(i).remove(object)) {
+                if(this.children.get(i).key == null) {
+                    this.children.remove(i);
+                }
                 return true;
             }
         }
@@ -520,10 +526,4 @@ public class Tree<E extends Comparable<E>> implements Serializable, Cloneable, I
         this.parentIndex = ROOT_PARENT_INDEX;
         this.key = null;
     }
-
-    private Tree<E> parent;  // parent
-    private int parentIndex;  // index of this node in parent's children list
-    private List<Tree<E>> children;  // list of children
-    private E key;  // actual data
-    private static final int ROOT_PARENT_INDEX = -1;  // parent index for root of the tree
 }
