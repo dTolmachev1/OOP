@@ -1,0 +1,16 @@
+classDiagram
+    class SharedQueue~T~ {
+        -Queue~T~ queue
+        -int queueCapacity
+        -Object empty
+        -Object full
+        +SharedQueue(int queueCapacity)
+        +isEmpty() boolean
+        +isFull() boolean
+        +waitOnEmpty()
+        +waitOnFull()
+        +notifyForEmpty()
+        +notifyForFull()
+        +add(~T~ data)
+        +remove() ~T~
+    }

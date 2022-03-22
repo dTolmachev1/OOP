@@ -73,13 +73,13 @@ public class PizzeriaApp implements Runnable {
     /* Creates pizzeria configurator from json file */
     private PizzeriaConfigurator getConfigurator() {
         PizzeriaConfigurator pizzeriaConfigurator = new PizzeriaConfigurator();
-    try {  // trying to open input file
-        Reader reader = Files.newBufferedReader(this.filePath, this.CHARSET);
-        pizzeriaConfigurator.deserialize(reader);
-        reader.close();
-    } catch(IOException e) {
-        e.printStackTrace();
-    }
-    return pizzeriaConfigurator;
+        try {  // trying to open input file
+            Reader reader = Files.newBufferedReader(this.filePath, this.CHARSET);
+            pizzeriaConfigurator.deserialize(reader);
+            reader.close();
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+        return pizzeriaConfigurator;
     }
 }

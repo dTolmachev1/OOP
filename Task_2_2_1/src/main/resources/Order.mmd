@@ -1,0 +1,18 @@
+classDiagram
+    class Order {
+        -int number
+        -State state
+        +Order(int number)
+        +getNumber() int
+        +getState() String
+        +printState()
+        +updateState() boolean
+    }
+    class State {
+        <<enumeration>>
+        +State PENDING $
+        +State COOKING $
+        +State COOKED $
+        +State DELIVERING $
+        +State COMPLETED $
+    }
