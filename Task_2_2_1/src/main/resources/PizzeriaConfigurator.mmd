@@ -1,0 +1,16 @@
+classDiagram
+    class PizzeriaConfigurator {
+        -int queueCapacity
+        -int nPizzaiolos
+        -int nDeliverers
+        -int[] deliverersCapacity
+        -Gson gson
+        +PizzeriaConfigurator()
+        +PizzeriaConfigurator(int queueCapacity, int nPizzaiolos, int nDeliverers, int[] deliverersCapacity)
+        +getQueueCapacity() int
+        +getNPizzaiolos() int
+        +getNDeliverers() int
+        +getDeliverersCapacity() int[]
+        +serialize(Writer writer)
+        +deserialize(Reader reader)
+    }

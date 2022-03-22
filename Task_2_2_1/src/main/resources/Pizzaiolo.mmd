@@ -1,0 +1,11 @@
+classDiagram
+    class Pizzaiolo {
+        -SharedQueue~Order~ orderQueue
+        -SharedQueue~Order~ deliveryQueue
+        -boolean isRunning
+        -Random random
+        -int SLEEP_TIME
+        +Pizzaiolo(SharedQueue~Order~ orderQueue, SharedQueue~Order~ deliveryQueue)
+        +produce()
+        +stop()
+    }

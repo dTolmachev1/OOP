@@ -1,0 +1,10 @@
+classDiagram
+    class Customers {
+        -SharedQueue~Order~ orderQueue
+        -boolean isRunning
+        -Random random
+        -int SLEEP_TIME
+        +Customers(SharedQueue~Order~ orderQueue)
+        +produce()
+        +stop()
+    }

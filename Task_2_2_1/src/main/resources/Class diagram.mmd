@@ -1,0 +1,13 @@
+classDiagram
+    AbstractProducer ..|> Customers
+    AbstractProducer ..|> Pizzaiolo
+    AbstractConsumer ..|> Deliverer
+    Order o-- State
+    Customers o-- SharedQueue~Order~
+    Pizzaiolo o-- SharedQueue~Order~
+    Deliverer o-- SharedQueue~Order~
+    Pizzeria o-- Customers
+    Pizzeria o-- Pizzaiolo
+    Pizzeria o-- Deliverer
+    Pizzeria o-- SharedQueue~Order~
+    Pizzeria --> PizzeriaConfigurator

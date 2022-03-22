@@ -1,0 +1,12 @@
+classDiagram
+    class Pizzeria {
+        -Customers customers
+        -List~Pizzaiolo~ pizzaiolos
+        -List~Deliverer~ deliverers
+        -SharedQueue~Order~ orderQueue
+        -SharedQueue~Order~ deliveryQueue
+        -int SLEEP_TIME
+        +Pizzeria(PizzeriaConfigurator pizzeriaConfigurator)
+        +start()
+        +stop()
+    }
