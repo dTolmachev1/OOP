@@ -63,7 +63,7 @@ public class Deliverer extends AbstractConsumer {
                 order.updateState();
                 order.printState();
                 try {
-                    Thread.sleep(this.random.nextInt(this.SLEEP_TIME));
+                    Thread.sleep(order.getDeliveryTime());
                 } catch (InterruptedException ignored) {}
                 order.updateState();
                 order.printState();

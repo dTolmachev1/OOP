@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * <p>Class for representing pizzeria.</p>
@@ -29,7 +28,7 @@ public class Pizzeria {
         this.orderQueue = new SharedQueue<>(0);
         this.deliveryQueue = new SharedQueue<>(pizzeriaConfigurator.getQueueCapacity());
         this.customers = new Customers(this.orderQueue);
-        this.pizzaiolos = Stream.generate(() -> new Pizzaiolo(this.orderQueue, this.deliveryQueue)).limit(pizzeriaConfigurator.getNPizzaiolos()).collect(Collectors.toCollection(ArrayList::new));
+        this.pizzaiolos = Arrays.stream(pizzeriaConfigurator.getPizzaiolosCookTime()).mapToObj(pizzaioloCookTime -> new Pizzaiolo(this.orderQueue, this.deliveryQueue, pizzaioloCookTime)).collect(Collectors.toCollection(ArrayList::new));
         this.deliverers = Arrays.stream(pizzeriaConfigurator.getDeliverersCapacity()).mapToObj(delivererCapacity -> new Deliverer(this.deliveryQueue, delivererCapacity)).collect(Collectors.toCollection(ArrayList::new));
     }
 

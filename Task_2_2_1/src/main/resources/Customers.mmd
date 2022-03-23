@@ -3,6 +3,7 @@ classDiagram
         -SharedQueue~Order~ orderQueue
         -boolean isRunning
         -Random random
+        -int DELIVERY_TIME
         -int SLEEP_TIME
         +Customers(SharedQueue~Order~ orderQueue)
         +produce()

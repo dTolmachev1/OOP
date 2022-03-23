@@ -2,13 +2,15 @@ classDiagram
     class PizzeriaConfigurator {
         -int queueCapacity
         -int nPizzaiolos
+        -int[] pizzaiolosCookTime
         -int nDeliverers
         -int[] deliverersCapacity
         -Gson gson
         +PizzeriaConfigurator()
-        +PizzeriaConfigurator(int queueCapacity, int nPizzaiolos, int nDeliverers, int[] deliverersCapacity)
+        +PizzeriaConfigurator(int queueCapacity, int nPizzaiolos, int[] pizzaiolosCookTime, int nDeliverers, int[] deliverersCapacity)
         +getQueueCapacity() int
         +getNPizzaiolos() int
+        +getPizzaiolosCookTime() int[]
         +getNDeliverers() int
         +getDeliverersCapacity() int[]
         +serialize(Writer writer)

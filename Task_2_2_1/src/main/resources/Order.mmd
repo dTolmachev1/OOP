@@ -1,9 +1,11 @@
 classDiagram
     class Order {
         -int number
+        -int deliveryTime
         -State state
-        +Order(int number)
+        +Order(int number, int deliveryTime)
         +getNumber() int
+        +getDeliveryTime() int
         +getState() String
         +printState()
         +updateState() boolean
