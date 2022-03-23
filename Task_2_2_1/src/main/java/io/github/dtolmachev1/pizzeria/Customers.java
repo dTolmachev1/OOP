@@ -12,6 +12,7 @@ public class Customers extends AbstractProducer {
     private final SharedQueue<Order> orderQueue;  // order list
     private volatile boolean isRunning;  // status flag
     private final Random random;  // for pseudorandom number generation
+    private final int DELIVERY_TIME = 1000;  // maximum possible time of delivering order
     private final int SLEEP_TIME = 100;  // maximum possible time between producing new orders
 
     /**
@@ -32,7 +33,7 @@ public class Customers extends AbstractProducer {
     @Override
     public void produce() {
         for(int i = 0; this.isRunning; i++) {
-            Order order = new Order(i);
+            Order order = new Order(i, random.nextInt(this.DELIVERY_TIME));
             this.orderQueue.add(order);
             order.printState();
             this.orderQueue.notifyForEmpty();

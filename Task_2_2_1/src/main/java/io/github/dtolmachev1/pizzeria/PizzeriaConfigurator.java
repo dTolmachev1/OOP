@@ -13,6 +13,7 @@ import java.io.Writer;
 public class PizzeriaConfigurator {
     private int queueCapacity;  // maximum possible capacity of the shared queue
     private int nPizzaiolos;  // number of pizzaiolos
+    private int[] pizzaiolosCookTime;  // cooking time for each pizzaiolo
     private int nDeliverers;  // number of deliverers
     private int[] deliverersCapacity;  // bag capacity for each deliverer
     private transient final Gson gson;  // for json serialization
@@ -31,13 +32,15 @@ public class PizzeriaConfigurator {
      *
      * @param queueCapacity Maximum possible capacity of the shared queue.
      * @param nPizzaiolos Number of pizzaiolos.
+     * @param pizzaiolosCookTime Cooking time for each pizzaiolo.
      * @param nDeliverers Number of deliverers.
      * @param deliverersCapacity Bag capacity for each deliverer.
      */
-    public PizzeriaConfigurator(int queueCapacity, int nPizzaiolos, int nDeliverers, int[] deliverersCapacity) {
+    public PizzeriaConfigurator(int queueCapacity, int nPizzaiolos, int[] pizzaiolosCookTime, int nDeliverers, int[] deliverersCapacity) {
         this();
         this.queueCapacity = queueCapacity;
         this.nPizzaiolos = nPizzaiolos;
+        this.pizzaiolosCookTime = pizzaiolosCookTime;
         this.nDeliverers = nDeliverers;
         this.deliverersCapacity = deliverersCapacity;
     }
@@ -58,6 +61,15 @@ public class PizzeriaConfigurator {
      */
     public int getNPizzaiolos() {
         return this.nPizzaiolos;
+    }
+
+    /**
+     * <p>Returns cooking time for each pizzaiolo.</p>
+     *
+     * @return Cooking time for each pizzaiolo.
+     */
+    public int[] getPizzaiolosCookTime() {
+        return this.pizzaiolosCookTime;
     }
 
     /**
@@ -96,6 +108,7 @@ public class PizzeriaConfigurator {
         PizzeriaConfigurator pizzeriaConfigurator = gson.fromJson(reader, PizzeriaConfigurator.class);
         this.queueCapacity = pizzeriaConfigurator.queueCapacity;
         this.nPizzaiolos = pizzeriaConfigurator.nPizzaiolos;
+        this    .pizzaiolosCookTime = pizzeriaConfigurator.pizzaiolosCookTime;
         this.nDeliverers = pizzeriaConfigurator.nDeliverers;
         this.deliverersCapacity = pizzeriaConfigurator.deliverersCapacity;
     }

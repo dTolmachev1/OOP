@@ -5,16 +5,19 @@ package io.github.dtolmachev1.pizzeria;
  */
 public class Order {
     private final int number;  // order number
+    private final int deliveryTime;  // time of delivering
     private State state;  // order state
 
     /**
      * <p>Default constructor to initialize new order.</p>
      *
      * @param number Number of newly created order.
+     * @param deliveryTime time of delivering pizza.
      */
-    public Order(int number) {
+    public Order(int number, int deliveryTime) {
         this.number = number;
         this.state = State.PENDING;
+        this.deliveryTime = deliveryTime;
     }
 
     /**
@@ -24,6 +27,15 @@ public class Order {
      */
     public int getNumber() {
         return this.number;
+    }
+
+    /**
+     * <p>Returns time of delivering for this order.</p>
+     *
+     * @return Time of delivering for this order.
+     */
+    public int getDeliveryTime() {
+        return this.deliveryTime;
     }
 
     /**

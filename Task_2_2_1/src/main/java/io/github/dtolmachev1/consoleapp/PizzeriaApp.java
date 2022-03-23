@@ -24,6 +24,7 @@ public class PizzeriaApp implements Runnable {
     private final Path filePath;  // default pizzeria file
     private final int QUEUE_CAPACITY = 100;  // maximum capacity of the shared queue
     private final int NPIZZAIOLOS = 10;  // number of pizzaiolos
+    private final int PIZZAIOLOS_COOK_TIME = 1000;  // maximum possible time between producing new pizzas
     private final int NDELIVERERS = 10;  // number of deliverers
     private final int DELIVERERS_CAPACITY = 5;  // maximum possible capacity of deliverers bag
     private final int TIME = 10000;  // execution time
@@ -60,9 +61,11 @@ public class PizzeriaApp implements Runnable {
                 Files.createFile(this.filePath);
             }
             Writer writer = Files.newBufferedWriter(this.filePath, this.CHARSET);
-            int[] deliverers = new int[this.NDELIVERERS];
-            Arrays.setAll(deliverers, i -> this.random.nextInt(this.DELIVERERS_CAPACITY) + 1);
-            PizzeriaConfigurator pizzeriaConfigurator = new PizzeriaConfigurator(this.QUEUE_CAPACITY, this.NPIZZAIOLOS, this.NDELIVERERS, deliverers);
+            int[] pizzaiolosCookTime = new int[this.NPIZZAIOLOS];
+            int[] deliverersCapacity = new int[this.NDELIVERERS];
+            Arrays.setAll(pizzaiolosCookTime, i -> this.random.nextInt(this.PIZZAIOLOS_COOK_TIME) + 1);
+            Arrays.setAll(deliverersCapacity, i -> this.random.nextInt(this.DELIVERERS_CAPACITY) + 1);
+            PizzeriaConfigurator pizzeriaConfigurator = new PizzeriaConfigurator(this.QUEUE_CAPACITY, this.NPIZZAIOLOS, pizzaiolosCookTime, this.NDELIVERERS, deliverersCapacity);
             pizzeriaConfigurator.serialize(writer);
             writer.close();
         } catch(IOException e) {

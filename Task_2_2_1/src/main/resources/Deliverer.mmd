@@ -1,10 +1,11 @@
 classDiagram
     class Deliverer {
         -SharedQueue~Order~ deliveryQueue
+        -int bagCapacity
         -boolean isRunning
         -Random random
         -int SLEEP_TIME
-        +Deliverer(SharedQueue~Order~ deliveryQueue)
+        +Deliverer(SharedQueue~Order~ deliveryQueue, int bagCapacity)
         +produce()
         +stop()
     }
