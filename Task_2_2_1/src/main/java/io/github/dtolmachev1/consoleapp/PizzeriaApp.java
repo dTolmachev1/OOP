@@ -36,7 +36,7 @@ public class PizzeriaApp implements Runnable {
     public PizzeriaApp() {
         this.random = new Random();
         this.filePath = Paths.get("Pizzeria.json");
-        if (Files.exists(this.filePath)) {
+        if (!Files.exists(this.filePath)) {
             createFile();
         }
         this.pizzeria = new Pizzeria(getConfigurator());
