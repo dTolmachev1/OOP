@@ -1,5 +1,10 @@
 package io.github.dtolmachev1.snake;
 
+import io.github.dtolmachev1.snake.cell.Cell;
+import io.github.dtolmachev1.snake.cell.SnakeNode;
+import io.github.dtolmachev1.snake.coordinates.Operations;
+import io.github.dtolmachev1.snake.coordinates.VelocityVector;
+
 import java.util.Deque;
 import java.util.LinkedList;
 
@@ -8,35 +13,45 @@ import java.util.LinkedList;
  */
 public class Snake {
     private final Deque<Cell> nodes;  // list of snake nodes
+    private VelocityVector velocityVector;  // for storing current velocity and direction
+    private final int bottomBorder;  // bottom border
+    private final int rightBorder;  // right border
+    private final Operations<Cell> operations;  // for some computations with coordinates
 
     /**
      * <p>Constructor to initialize snake at the specified position.</p>
      *
      * @param head Cell to be head of the newly created snake.
+     * @param velocityVector Velocity and direction for the snake to be created.
+     * @param bottomBorder Bottom border.
+     * @param rightBorder Right border.
      */
-    public Snake(Cell head) {
+    public Snake(Cell head, VelocityVector velocityVector, int bottomBorder, int rightBorder) {
         this.nodes = new LinkedList<>();
-        head.setType(CellType.SNAKE_NODE);
         this.nodes.addFirst(head);
+        this.velocityVector = velocityVector;
+        this.bottomBorder = bottomBorder;
+        this.rightBorder = rightBorder;
+        this.operations = new Operations<>((row, column) -> new Cell(row, column, SnakeNode.SNAKE_NODE));
     }
 
     /**
-     * <p>Returns current length of the snake.</p>
+     * <p>Returns length of the snake.</p>
      *
      * @return Current length of the snake.
      */
     public int getLength() {
-        return nodes.size();
+        return this.nodes.size();
     }
 
     /**
-     * <p>Checks whether snake contains specified node.</p>
+     * <p>Checks if moving in currently set direction is possible.</p>
      *
-     * @param node Cell to check.
-     * @return <code>true</code> if snake contains given node, or <code>false</code> otherwise.
+     * @return <code>true</code> if snake is able to move without intersecting itself, or <code>false</code> otherwise.
      */
-    public boolean contains(Cell node) {
-        return this.nodes.contains(node);
+    public boolean isPossibleMove() {
+        Cell newHead = newHead();
+        return this.nodes.stream().noneMatch(node -> node.intersects(newHead));
     }
 
     /**
@@ -49,22 +64,52 @@ public class Snake {
     }
 
     /**
-     * <p>grows with the specified cell.</p>
+     * <p>Returns snake nodes.</p>
      *
-     * @param head New head of the snake.
+     * @return Current snake nodes.
      */
-    public void grow(Cell head) {
-        head.setType(CellType.SNAKE_NODE);
-        this.nodes.addFirst(head);
+    public Deque<Cell> getNodes() {
+        return this.nodes;
     }
 
     /**
-     * <p>Moves to the specified cell.</p>
+     * <p>Returns snakes velocity and direction.</p>
      *
-     * @param head New head of the snake.
+     * @return Current snakes velocity and direction.
      */
-    public void move(Cell head) {
-        grow(head);
-        this.nodes.removeLast().setType(CellType.EMPTY);
+    public VelocityVector getVelocityVector() {
+        return this.velocityVector;
+    }
+
+    /**
+     * <p>Changes velocity and direction of the snake to the specified one.</p>
+     *
+     * @param velocityVector Velocity and direction to be set.
+     */
+    public void setVelocityVector(VelocityVector velocityVector) {
+        this.velocityVector = velocityVector;
+    }
+
+    /**
+     * <p>Grows in the currently set direction.</p>
+     */
+    public void grow() {
+        this.nodes.addFirst(newHead());
+    }
+
+    /**
+     * <p>Moves in the currently set direction.</p>
+     */
+    public void move() {
+        grow();
+        this.nodes.removeLast();
+    }
+
+    /* Returns head to be grown */
+    private Cell newHead() {
+        Cell newHead = this.operations.add(getHead(), operations.multiply(operations.unit(), this.velocityVector));
+        int row = newHead.row() < 0 ? this.bottomBorder + newHead.row() : newHead.row() % this.bottomBorder;
+        int column = newHead.column() < 0 ? this.rightBorder + newHead.column() : newHead.column() % this.rightBorder;
+        return new Cell(row, column, SnakeNode.SNAKE_NODE);
     }
 }

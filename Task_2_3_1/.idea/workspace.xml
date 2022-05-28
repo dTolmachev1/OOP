@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e96faecf-0426-4726-9179-ed22e2bb728d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snake/cell/Cell.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snake/cell/CellType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snake/cell/Environment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snake/cell/Food.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snake/cell/ScoreCellType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snake/cell/SnakeNode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snake/coordinates/Coordinates.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snake/coordinates/CoordinatesFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snake/coordinates/Operations.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snake/coordinates/VelocityVector.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snakefx/ApplicationModule.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snakefx/Launcher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snakefx/SnakeApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snakefx/gameloop/GameLoopTimer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snakefx/gameloop/TickHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snakefx/view/AbstractController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snakefx/view/GameScreenController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snakefx/view/MainViewController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snakefx/view/SettingsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/io/github/dtolmachev1/snakefx/view/GameScreen.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/io/github/dtolmachev1/snakefx/view/MainView.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/io/github/dtolmachev1/snakefx/view/Settings.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/io/github/dtolmachev1/snake/BoardTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/io/github/dtolmachev1/snake/SnakeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snake/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snake/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snake/Cell.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snake/CellType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snake/MapLoader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snake/Snake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snake/Snake.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Task_2_3_1" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Task_2_3_1" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Task_2_3_1" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Task_2_3_1" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="documentation" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JUnit5 Test Class" />
+        <option value="package.json" />
+        <option value="CSS File" />
+        <option value="FxmlFile" />
+        <option value="Class" />
+        <option value="module-info" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="29ZQa4nQetxiM0CUbhiQtZ9UHJS" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="io.github.dtolmachev1.snake" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Gradle.Task_2_3_1 [uberJar]">
+    <configuration name="Task_2_3_1 [buildDependents]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="buildDependents" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="Task_2_3_1 [jar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="jar" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="Task_2_3_1 [javadoc]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="javadoc" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="Task_2_3_1 [jlink]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="jlink" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="Task_2_3_1 [uberJar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="uberJar" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.Task_2_3_1 [uberJar]" />
+        <item itemvalue="Gradle.Task_2_3_1 [javadoc]" />
+        <item itemvalue="Gradle.Task_2_3_1 [jar]" />
+        <item itemvalue="Gradle.Task_2_3_1 [buildDependents]" />
+        <item itemvalue="Gradle.Task_2_3_1 [jlink]" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e96faecf-0426-4726-9179-ed22e2bb728d" name="Changes" comment="" />
+      <created>1653318194890</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1653318194890</updated>
+      <workItem from="1653318197105" duration="1023000" />
+      <workItem from="1653403508800" duration="8095000" />
+      <workItem from="1653453252053" duration="4438000" />
+      <workItem from="1653466338710" duration="7457000" />
+      <workItem from="1653489656190" duration="5782000" />
+      <workItem from="1653539235990" duration="4756000" />
+      <workItem from="1653555279160" duration="18310000" />
+      <workItem from="1653583483616" duration="8410000" />
+      <workItem from="1653592398186" duration="5423000" />
+      <workItem from="1653597952334" duration="1936000" />
+      <workItem from="1653705289241" duration="2651000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

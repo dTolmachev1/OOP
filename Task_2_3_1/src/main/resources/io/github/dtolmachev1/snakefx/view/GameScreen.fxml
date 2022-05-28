@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:id="root"
+      xmlns="http://javafx.com/javafx"
+      fx:controller="io.github.dtolmachev1.snakefx.view.GameScreenController"
+      minWidth="100"
+      minHeight="100"
+      maxWidth="Infinity"
+      maxHeight="Infinity"
+      style="-fx-background-color: white;">
+    <HBox spacing="10" alignment="CENTER" maxWidth="Infinity" style="-fx-padding: 10; -fx-font-size: 20;">
+        <Label text="Score"/>
+        <Label fx:id="scoreValue" text="0"/>
+    </HBox>
+    <Pane fx:id="container"
+          maxWidth="Infinity"
+          maxHeight="Infinity"
+          VBox.vgrow="ALWAYS">
+    </Pane>
+</VBox>
