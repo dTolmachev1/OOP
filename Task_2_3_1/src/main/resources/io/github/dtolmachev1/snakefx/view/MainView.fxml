@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:id="root"
+      xmlns="http://javafx.com/javafx"
+      fx:controller="io.github.dtolmachev1.snakefx.view.MainViewController"
+      prefHeight="400.0"
+      prefWidth="600.0"
+      maxHeight="Infinity"
+      maxWidth="Infinity"
+      alignment="CENTER">
+    <fx:define>
+        <fx:include fx:id="gameScreen" source="GameScreen.fxml"/>
+    </fx:define>
+    <fx:define>
+        <fx:include fx:id="settings" source="Settings.fxml"/>
+    </fx:define>
+    <HBox alignment="CENTER">
+        <VBox spacing="20" alignment="CENTER">
+            <Label text="The Snake Game" style="-fx-font-size: 20;"/>
+            <Button text="Start game" onAction="#switchAndStartGame"/>
+            <Button text="Settings" onAction="#openSettings"/>
+            <Button text="Exit" onAction="#exit"/>
+        </VBox>
+    </HBox>
+</VBox>

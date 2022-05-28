@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:id="root"
+      xmlns="http://javafx.com/javafx"
+      fx:controller="io.github.dtolmachev1.snakefx.view.SettingsController"
+      prefHeight="600.0"
+      prefWidth="600.0"
+      style="-fx-padding: 50;" spacing="20">
+    <VBox fx:id="inGameMenu" spacing="${root.spacing}" visible="false" managed="${inGameMenu.visible}">
+        <Label text="In Game Menu" style="-fx-font-size: 20;"/>
+        <Button text="Resume" onAction="#resume"/>
+        <Button text="Restart" onAction="#restart"/>
+        <Button text="Back to Main Menu" onAction="#backToMainMenu"/>
+    </VBox>
+    <Label text="Settings" style="-fx-font-size: 20;"/>
+    <HBox spacing="10">
+        <Label text="Width"/>
+        <Label fx:id="widthValue" text="-"/>
+    </HBox>
+    <Slider fx:id="widthSlider" value="32" min="2"/>
+    <HBox spacing="10">
+        <Label text="Height"/>
+        <Label fx:id="heightValue" text="-"/>
+    </HBox>
+    <Slider fx:id="heightSlider" value="32" min="2"/>
+    <HBox spacing="10">
+        <Label text="Scale"/>
+        <Label fx:id="scaleValue" text="-"/>
+        <Label text="\%"/>
+    </HBox>
+    <Slider fx:id="scaleSlider" value="1"/>
+    <HBox spacing="10">
+        <Label text="Food items"/>
+        <Label fx:id="foodItemsValue"/>
+    </HBox>
+    <Slider fx:id="foodItemsSlider" value="12"/>
+    <fx:define>
+        <ToggleGroup fx:id="gameMode"/>
+    </fx:define>
+    <HBox spacing="10">
+        <Label text="Final score"/>
+        <Label fx:id="finalScoreValue"/>
+    </HBox>
+    <Slider fx:id="finalScoreSlider" value="12" min="1"/>
+    <RadioButton fx:id="goalBtn" toggleGroup="$gameMode" text="Reach the goal"/>
+    <RadioButton fx:id="unlimitedBtn" toggleGroup="$gameMode" text="Unlimited playing"/>
+    <VBox VBox.vgrow="ALWAYS"/>
+    <HBox>
+        <Button fx:id="closeBtn" text="Close" onAction="#closeWindow" visible="${!inGameMenu.visible}" managed="${closeBtn.visible}"/>
+        <Label fx:id="restartWarning" text="Changes will be applied after restarting the game" visible="${inGameMenu.visible}"/>
+    </HBox>
+</VBox>
