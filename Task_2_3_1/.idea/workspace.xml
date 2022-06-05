@@ -4,44 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e96faecf-0426-4726-9179-ed22e2bb728d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snake/cell/Cell.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snake/cell/CellType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snake/cell/Environment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snake/cell/Food.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snake/cell/ScoreCellType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snake/cell/SnakeNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snake/coordinates/Coordinates.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snake/coordinates/CoordinatesFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snake/coordinates/Operations.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snake/coordinates/VelocityVector.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snakefx/ApplicationModule.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snakefx/Launcher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snakefx/SnakeApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snakefx/gameloop/GameLoopTimer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snakefx/gameloop/TickHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snakefx/view/AbstractController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snakefx/view/GameScreenController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snakefx/view/MainViewController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snakefx/view/SettingsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/io/github/dtolmachev1/snakefx/view/GameScreen.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/io/github/dtolmachev1/snakefx/view/MainView.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/io/github/dtolmachev1/snakefx/view/Settings.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/io/github/dtolmachev1/snake/BoardTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/io/github/dtolmachev1/snake/SnakeTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snake/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snake/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snake/Cell.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snake/CellType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snake/MapLoader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snake/Snake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/dtolmachev1/snake/Snake.java" afterDir="false" />
-    </list>
+    <list default="true" id="e96faecf-0426-4726-9179-ed22e2bb728d" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -267,6 +230,7 @@
       <workItem from="1653592398186" duration="5423000" />
       <workItem from="1653597952334" duration="1936000" />
       <workItem from="1653705289241" duration="2651000" />
+      <workItem from="1654428503631" duration="171000" />
     </task>
     <servers />
   </component>
