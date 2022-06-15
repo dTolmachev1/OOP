@@ -8,14 +8,14 @@ import java.time.format.DateTimeFormatter
 class MarkBuilder {
     private val dateTimeFormatter: DateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
     private var dateValue: LocalDate = LocalDate.parse("01.01.1970", dateTimeFormatter)
-    val score = -1
+    var score: Int = 0
     var date: String = ""
         set(value) {
             this.dateValue = LocalDate.parse(value, this.dateTimeFormatter)
         }
 
     fun build(): Mark {
-        if(this.score == -1) {
+        if(this.score == 0) {
             throw IllegalArgumentException("Score not found")
         }
         if(this.dateValue == LocalDate.parse("01.01.1970", dateTimeFormatter)) {
