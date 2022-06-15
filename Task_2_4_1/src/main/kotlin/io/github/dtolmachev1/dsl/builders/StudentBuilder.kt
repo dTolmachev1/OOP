@@ -9,19 +9,19 @@ import io.github.dtolmachev1.dsl.sentinels.Lessons
 import io.github.dtolmachev1.dsl.sentinels.Marks
 
 class StudentBuilder {
-    val name: String = ""
-    val userName: String = ""
-    val repo: String = ""
-    val group: String = ""
-    var assignedTasks: MutableList<AssignedTask> = mutableListOf()
+    var name: String = ""
+    var userName: String = ""
+    var repo: String = ""
+    var group: String = ""
+    val assignedTasks: MutableList<AssignedTask> = mutableListOf()
     fun assignedTasks(block: AssignedTasks.() -> Unit) {
         this.assignedTasks.addAll(AssignedTasks().apply(block))
     }
-    var lessons: MutableList<Lesson> = mutableListOf()
+    val lessons: MutableList<Lesson> = mutableListOf()
     fun lessons(block: Lessons.() -> Unit) {
         this.lessons.addAll(Lessons().apply(block))
     }
-    var marks: MutableList<Mark> = mutableListOf()
+    val marks: MutableList<Mark> = mutableListOf()
     fun marks(block: Marks.() -> Unit) {
         this.marks.addAll(Marks().apply(block))
     }

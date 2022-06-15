@@ -12,7 +12,7 @@ class LessonBuilder {
         set(value) {
             this.dateValue = LocalDate.parse(value, this.dateTimeFormatter)
         }
-    val attendance: Boolean = false
+    var attendance: Boolean = false
 
     fun build(): Lesson {
         if(this.dateValue == LocalDate.parse("01.01.1970", dateTimeFormatter)) {
