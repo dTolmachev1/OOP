@@ -22,7 +22,7 @@ DSL().student {
     lessons {
         lesson {
             date = "08.08.2022"
-            attendance = false
+            attendance = true
         }
         lesson {
             date = "05.10.2022"
@@ -44,7 +44,7 @@ DSL().student {
         }
         mark {
             score = 4
-            date = 27.12.2022
+            date = "27.12.2022"
         }
         mark {
             score = 5
