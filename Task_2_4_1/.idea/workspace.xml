@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f02c383a-2dcf-42ec-a58f-a70d1e1fe23b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/DenisTolmachev.kts" beforeDir="false" afterPath="$PROJECT_DIR$/configs/DenisTolmachev.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/io/github/dtolmachev1/dsl/builders/AssignedTaskBuilder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/io/github/dtolmachev1/dsl/builders/AssignedTaskBuilder.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/io/github/dtolmachev1/dsl/builders/StudentBuilder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/io/github/dtolmachev1/dsl/builders/StudentBuilder.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/io/github/dtolmachev1/gradle/GradleHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/io/github/dtolmachev1/gradle/GradleHandler.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,6 +185,7 @@
       <workItem from="1655326292710" duration="2396000" />
       <workItem from="1655352585175" duration="5000" />
       <workItem from="1655359064249" duration="2757000" />
+      <workItem from="1655369679815" duration="155000" />
     </task>
     <servers />
   </component>
