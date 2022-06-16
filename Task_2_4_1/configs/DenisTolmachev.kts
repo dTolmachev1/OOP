@@ -1,6 +1,6 @@
-import io.github.dtolmachev1.dsl.DSL
+import io.github.dtolmachev1.dsl.student
 
-DSL().student {
+student {
     name = "DenisTolmachev"
     userName = "dtolmachev1"
     repo = "https://github.com/dtolmachev1/OOP.git"

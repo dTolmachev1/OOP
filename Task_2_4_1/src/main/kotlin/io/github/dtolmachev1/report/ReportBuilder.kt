@@ -30,6 +30,7 @@ class ReportBuilder {
     fun build(name: String) {
         val path: Path = Paths.get("./reports/$name/report.html")
         if(Files.notExists(path)) {
+            Files.createDirectories(path.parent)
             Files.createFile(path)
         }
         val configLoader = ConfigLoader()
