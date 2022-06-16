@@ -13,9 +13,9 @@ class StudentBuilder {
     var userName: String = ""
     var repo: String = ""
     var group: String = ""
-    val assignedTasks: MutableList<AssignedTask> = mutableListOf()
-    fun assignedTasks(block: AssignedTasks.() -> Unit) {
-        this.assignedTasks.addAll(AssignedTasks().apply(block))
+    val tasks: MutableList<AssignedTask> = mutableListOf()
+    fun tasks(block: AssignedTasks.() -> Unit) {
+        this.tasks.addAll(AssignedTasks().apply(block))
     }
     val lessons: MutableList<Lesson> = mutableListOf()
     fun lessons(block: Lessons.() -> Unit) {
@@ -39,6 +39,6 @@ class StudentBuilder {
         if(this.group == "") {
             throw IllegalArgumentException("Group not found")
         }
-        return Student(this.name, this.userName, this.repo, this.group, this.assignedTasks, this.lessons, this.marks)
+        return Student(this.name, this.userName, this.repo, this.group, this.tasks, this.lessons, this.marks)
     }
 }

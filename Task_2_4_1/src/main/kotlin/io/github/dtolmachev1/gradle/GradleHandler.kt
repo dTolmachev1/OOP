@@ -49,8 +49,8 @@ class GradleHandler {
 
     private fun prepareArtifacts(srcDir: Path, destDir: Path) {
         if(Files.notExists(destDir)) {
-        Files.createDirectory(destDir)
-        } else Files.newDirectoryStream(destDir).forEach { it.toFile().deleteRecursively() }
-        Files.newDirectoryStream(srcDir).forEach { it.toFile().copyRecursively(destDir.toFile()) }
+        Files.createDirectories(destDir)
+        } else destDir.toFile().deleteRecursively()
+        srcDir.toFile().copyRecursively(destDir.toFile(), overwrite = true)
     }
 }
